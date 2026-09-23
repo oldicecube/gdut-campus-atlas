@@ -1,13 +1,13 @@
-﻿# 广工大学城校园 3D 模型转 Minecraft 存档 / Litematica 投影可行性分析
+# 广工大学城校园 3D 模型转 Minecraft 存档 / Litematica 投影可行性分析
 
-分析日期：2026-09-23  
-分析对象：[`Xuezhenggdut/gdut-campus-atlas`](https://github.com/Xuezhenggdut/gdut-campus-atlas)  
-工作副本：[`oldicecube/gdut-campus-atlas`](https://github.com/oldicecube/gdut-campus-atlas)  
+分析日期：2026-09-23
+分析对象：[`Xuezhenggdut/gdut-campus-atlas`](https://github.com/Xuezhenggdut/gdut-campus-atlas)
+工作副本：[`oldicecube/gdut-campus-atlas`](https://github.com/oldicecube/gdut-campus-atlas)
 分析基线：上游 `main` 提交 `7e3e2fec712ab3177808ab52aa3e702fbead1092`（Add continuously cycling pelican to central athletics track）
 
 ## 1. 结论摘要
 
-**技术上可行，但不存在“GLB 一键转 Litematica”的可靠现成链路。**  
+**技术上可行，并且已有多个相近先例；但没有“任意 Three.js 校园场景无损、包含全部要素、一键转 Litematica”的通用现成链路。**
 本项目也不应先导出 GLB 再转换，因为当前 `exportModel('campus')` 本身不包含地形、道路、水面、程序化树木和动态对象。正确路线是直接复用 Three.js 场景的数据与几何生成器，建立一条：
 
 ```text
@@ -20,23 +20,101 @@
 
 推荐先交付 **Litematica/Sponge 投影**，再做存档。原因是投影文件以稀疏方块调色板存储，便于分区、审阅、反复调整和多人分享；Minecraft 世界存档还要处理 Anvil region、区块边界、方块实体、坐标放置和区块加载，工程增量明显更大。
 
-预计工程量：**中等偏高**。`体积采样 + 方块调色板 + Sponge .schem 写出` 可以较快做出原型；要达到“校园整体可辨识、重点建筑耐看、道路水系正确、文件能被 Litematica 稳定加载”，需要完整自建体素化与分片管线。
+预计工程量：**中等偏高**。`体积采样 + 方块调色板 + Sponge .schem 写出` 可以较快做出原型；单栋 GLB 还可用 `ObjToSchematic` 走通验证链路。要达到“校园整体可辨识、重点建筑耐看、道路水系正确、文件能被 Litematica 稳定加载”，仍需要完整自建体素化与分片管线。详见第 3 章“同类需求与已有流程调查”。
 
 ## 2. Fork 与实际工作区状态
+## 3. 同类需求与已有流程调查
 
-- 已在 GitHub 创建 fork：`https://github.com/oldicecube/gdut-campus-atlas`
-- fork 的父仓库：`Xuezhenggdut/gdut-campus-atlas`
-- fork 默认分支：`main`
-- 本地目录：`D:\Cube GDUT\gdut-campus-atlas`
-- `origin` 指向 fork，`upstream` 指向上游
-- 本机 `git fetch` 访问 `github.com:443` 超时，因此当前本地 Git 历史是“源码快照提交”，不是完整上游历史；源码内容已核对并对齐上游最新提交 `7e3e2fec...`
-- 上游代码可通过 `gh api` 正常读取，分析结论不依赖本地历史
-- 构建验证：`npm.cmd run build` 通过
-- 测试验证：90 项测试通过
-- 运行环境：Node.js `v22.22.3`，npm `10.9.8`
-- 附带统计脚本：`scripts/analyze-minecraft-feasibility.ts`，可重复输出建筑数量和体素预算
+结论先行：**类似需求已经有人做过，而且不止一种路线。** 不存在“任意复杂 Three.js 场景无损一键转 Minecraft”的通用按钮，但关键环节已有成熟项目，足以少走大量弯路。
 
-## 3. 项目实际是什么
+### 3.1 完整先例：ObjToSchematic
+
+- 仓库：https://github.com/LucasDower/ObjToSchematic
+- 网站：https://objtoschematic.com/
+- 类型：TypeScript；视觉化编辑器 + 可复用导出器；GitHub 约 523 星（2026-09-23 检索）
+- 输入：Wavefront `.obj`，另有实验性 glTF/GLB 导入
+- 输出：`.schematic`、`.litematic`、Sponge `.schem`、结构方块 `.nbt`，并支持 OBJ 回写
+- 核心流程：导入网格 -> 材质/颜色 -> 选择体素化算法 -> 分配 Minecraft 方块调色板 -> 导出结构
+- 关键源码：`src/importers/gltf_loader.ts`、`src/voxelisers/`、`src/block_assigner.ts`、`src/exporters/schem_exporter.ts`、`src/exporters/litematic_exporter.ts`
+- 许可证：BSD-3-Clause
+- 重要状态：仓库中的 1.0 桌面版本已明确标注为 legacy、不再更新；2.0 主要作为在线服务维护。直接当作长期运行时依赖有风险，但算法和格式实现仍非常适合作为参考或短暂验证链路。
+
+对本项目的意义：现有 `scripts/export-models.ts` 已能把项目程序化几何导出为 GLB。理论上可以用 `gltf -> ObjToSchematic -> .litematic` 做第一版验证，尤其适合单栋图书馆。但不能把它当成整校最终方案，因为：
+
+- GLB 导入在该项目中仍被标注为 experimental。
+- 当前 `exportModel('campus')` 不包含完整地形、道路、水系、程序化树木和动态对象，即使转换成功也不是完整校园。
+- 社区 issue 已记录大模型相关风险，包括 OOM、超大 OBJ 无法加载、大体积文件无法正常显示、体素化后模型出现空洞等。
+- 全校园 1 单位/方块体量远大于普通单体模型，不适合依赖浏览器端一次性处理。
+
+因此它适合回答“几何到投影的最小链路能不能跑通”，不适合直接回答“如何稳定生成整个广工校园”。
+
+### 3.2 校园/真实地理世界先例：Arnis 与 Meld
+
+- Arnis：https://github.com/louis-e/arnis
+- 描述：从真实世界地理数据生成 Minecraft Java Edition 世界，支持 1:1 尺度，GitHub 约 18,000 星（2026-09-23 检索）
+- 典型输入：OpenStreetMap；可选真实高程/卫星/地形数据
+- 输出：完整 Minecraft 世界，而不是仅建筑投影
+- Meld：https://github.com/Teddy563/meld
+- Meld 的作用：把 Arnis 的大范围 OSM 选区拆成瓦片并行生成，再以共享高程和随机种子合并为连续世界
+
+已有校园实践：
+
+- 电子科技大学清水河校区：https://github.com/yaowenhu-pm/uestc-minecraft
+  - 使用 Arnis 从 OSM 数据生成约 1:1 的校园 Minecraft 世界
+  - 同时提供 BlueMap 网页地图和中文地名标注
+  - 说明“真实校园数据 -> Minecraft 校园世界”的需求已验证可行
+- 香港科技大学（清水湾）：https://github.com/clarkwei-101/hkust-minecraft
+  - 使用 Arnis v3.0.0 构建 1:1 基岩版校园重建
+- 校园重建工具：https://github.com/jingyuansrobin/campus-reconstruction-tool
+  - 原生 Minecraft 校园重建桌面工具，声明基于 Arnis 派生生成逻辑
+
+对本项目的意义：Arnis/Meld 证明了大范围真实地点、校园尺度和分片生成这条路可行。但两者的核心输入是 OSM/GIS，不是 Three.js 程序化几何。本项目没有把全部校园要素回写成标准 GIS 图层，所以不能简单“调用 Arnis 得到同一个广工模型”。最值得借鉴的是 OSM 语义层到方块语义层映射、大区域按瓦片切分/并行生成/共享原点合并、真实世界坐标到 Minecraft 坐标的投影，以及对高差、岸边、道路和建筑轮廓的专门处理。
+
+### 3.3 Litematica 读写与生态工具
+
+- Litemapy：https://github.com/SmylerMC/litemapy
+  - Python；GPL-3.0；读写和编辑 `.litematic`；约 87 星
+  - 适合服务端/离线批处理、分片拼接和自动检查
+- schematic4j：https://github.com/SandroHc/schematic4j
+  - Java；MIT；解析 `.schem`、`.schematic`、`.litematic`；约 27 星
+  - 适合在 JVM 生态中做格式校验和转换
+- Lite2Edit：https://github.com/GoldenDelicios/Lite2Edit
+  - Java；MIT；把 `.litematic` 转成 WorldEdit `.schem`；约 181 星
+  - 适合验证投影和世界编辑流程，不是 3D 模型转换器
+- Litematica-viewer：https://github.com/albertchen857/Litematica-viewer
+  - Python；MIT；检查和编辑 `.litematic`，适合作为人工验收辅助
+- ObjToSchematic 的 `litematic_exporter.ts`
+  - 已包含 Litematica NBT、位宽编码、palette、region 的实际实现
+  - 但仍建议以“生成 `.schem` -> 官方 Litematica/WorldEdit 导入 -> 另存”作为最低风险路径
+
+### 3.4 其他 3D 转 Minecraft 项目与成熟度
+
+以下项目证明小中型 3D 模型转换已经有大量重复实现，但整体成熟度、维护度或许可证不如 ObjToSchematic，不建议直接作为整校主线：
+
+- takecx/obj2schematic：https://github.com/takecx/obj2schematic（OBJ -> `.schematic`；约 10 星）
+- skairunner/threed2vox：https://github.com/skairunner/threed2vox（3D 模型 -> Minecraft 兼容格式；约 7 星）
+- ZY4N-Corporation/ChunkModifier：https://github.com/ZY4N-Corporation/ChunkModifier（OBJ -> `.mca`；C++；Apache-2.0；约 2 星）
+- RicardoMaga/minecraft-voxel-converter：https://github.com/RicardoMaga/minecraft-voxel-converter（3D 模型 -> NBT；成熟度有限）
+- kanttouchthis/cuda_schem：https://github.com/kanttouchthis/cuda_schem（GPU/CUDA 体素化 -> `.schem`；约 1 星）
+- Arturr-H/obj-to-minecraft：https://github.com/Arturr-H/obj-to-minecraft（OBJ -> `.mcfunction`；约 1 星）
+- esamuelson/stl2minecraft：https://github.com/esamuelson/stl2minecraft（STL -> Minecraft Function；约 1 星）
+
+### 3.5 现有流程能否直接用于本项目
+
+| 路线 | 已有先例 | 对本项目适配 | 结论 |
+|---|---|---|---|
+| 单栋 GLB -> ObjToSchematic -> `.litematic` | 成熟 | 最容易验证，但需处理实验性 GLB 导入与材质 | 推荐作为最小原型 |
+| 自建 Three.js 数据提取 -> 体素化 -> `.schem`/`.litematic` | ObjToSchematic 可参考算法 | 能保留地形、道路、水系、树木和语义信息 | 推荐作为正式方案 |
+| OSM -> Arnis/Meld -> 完整 Minecraft 世界 | 有校园成功案例 | 需要先把项目数据转成 OSM/GIS 图层，不能直接复用现有模型 | 只借鉴分片和语义生成，不作为首版主线 |
+
+### 3.6 对原分析结论的修正
+
+原结论中的“不存在 GLB 一键转 Litematica 的可靠现成链路”需要收窄为：
+
+> 不存在“任意 Three.js 校园场景无损、包含全部要素、一键转 Litematica”的现成通用链路；但“GLB 单栋模型 -> ObjToSchematic -> `.litematic`”这条简化链路已经有成熟先例，可以作为原型验证入口。
+
+正式实施仍推荐直接复用项目数据与几何生成器，而不是把整校 GLB 当作唯一事实来源。这样既能保留语义分层，也能避免整校模型在第三方编辑器中触发内存和大文件问题。
+## 4. 项目实际是什么
 
 这不是由 Blender/glTF 资产拼装的校园模型，而是 **Three.js 程序化 3D 场景**：
 
@@ -49,7 +127,7 @@
 
 建筑几何主要由 Box、Cylinder、Shape、Extrude、Plane、Tube、Torus、Icosahedron 等基本体组合，不是方块网格。大量“窗格、栏杆、格栅、灯带”是薄板或线状几何，直接按三角形逐个体素化会产生海量碎片，应采用“包围盒/三角形与体素相交 + 最小厚度补偿 + 按语义分层”的策略。
 
-## 4. 当前导出能力与缺口
+## 5. 当前导出能力与缺口
 
 `CampusScene.exportModel()` 的现有分支：
 
@@ -65,7 +143,7 @@ README 和验收报告也明确写明：`models/gdut-campus.glb` 是已建建筑
 - **需要新导出入口的对象**：地块、湖面、水道、道路、步道、公园、程序化树木、山体、天桥和夜间/动态层
 - **不应导出的对象**：相机、灯光、雾、夜间灯光池、动态车辆、鹈鹕骑行者、标签等表现层对象
 
-## 5. 实测规模与体素预算
+## 6. 实测规模与体素预算
 
 由 `scripts/analyze-minecraft-feasibility.ts` 统计：
 
@@ -98,7 +176,7 @@ README 和验收报告也明确写明：`models/gdut-campus.glb` 是已建建筑
 - 单体建筑/重点地标：**1 单位/方块**
 - 不建议把整校以 1 单位/方块做成一个单体文件
 
-## 6. 坐标与尺度处理
+## 7. 坐标与尺度处理
 
 `src/data/projection.ts` 提供 `toWorld()`：示意地图坐标经仿射变换进入 Three.js 世界坐标，北向为 `-Z`，单位是 `schematic`，不是米。Minecraft 坐标可直接使用该世界坐标，并做以下固定映射：
 
@@ -118,7 +196,7 @@ mcZ = floor((worldZ - originZ) / blockScale)
 
 不要从 GLB 的世界变换反推坐标；直接从数据层和 `toWorld()` 生成，避免浮点误差和多格式重采样。
 
-## 7. 推荐的体素化架构
+## 8. 推荐的体素化架构
 
 建议新增独立的导出模块，不要把复杂逻辑塞进 `CampusScene.ts`：
 
@@ -151,7 +229,7 @@ src/minecraft/
 6. **分片和 LOD**：先按教学区、生活东区、生活西区、体育/景观区分片，再按 2 单位总览与 1 单位重点区输出。
 7. **写出与验证**：先生成 Sponge `.schem`，用 Litematica 或 WorldEdit 导入验证；确认后再决定是否直接生成 `.litematic`。
 
-## 8. 方块调色板建议
+## 9. 方块调色板建议
 
 不要按“颜色完全相等”映射，因为 Minecraft 方块有朝向、光照、透明和方块状态。建议建立两级调色板：
 
@@ -172,7 +250,7 @@ src/minecraft/
 
 重点不是“每个颜色都找一个方块”，而是把相似语义合并到有限调色板，通常 20~40 种方块足够；否则调色板位数和文件大小会增加，视觉也会碎片化。
 
-## 9. `.litematic` 与 `.schem` 的实际格式
+## 10. `.litematic` 与 `.schem` 的实际格式
 
 Litematica 当前源码中的 `LitematicaSchematic`：
 
@@ -190,7 +268,7 @@ Litematica 当前源码中的 `LitematicaSchematic`：
 - `prismarine-schematic@1.3.0` 支持 Sponge `.schem` 读写，依赖 `prismarine-nbt`、`prismarine-world`、`minecraft-data`；它**不直接写 `.litematic`**
 - `makeWithCommands()` 可生成 `setblock` 命令链，适合无 WorldEdit 的服务器，但对整校把命令数量降到可执行规模本身就是一项优化任务
 
-## 10. Litematica 投影与 Minecraft 存档的选择
+## 11. Litematica 投影与 Minecraft 存档的选择
 
 ### Litematica 投影
 
@@ -223,7 +301,7 @@ Litematica 当前源码中的 `LitematicaSchematic`：
 
 **建议：同一条体素结果同时支持两种输出，但交付顺序为 `.schem` -> `.litematic` -> 世界存档。**
 
-## 11. 分片与 LOD 方案
+## 12. 分片与 LOD 方案
 
 建议按数据中的 `area` 和对象类别拆分，而不是按固定正方形窗口切割：
 
@@ -245,7 +323,7 @@ Litematica 当前源码中的 `LitematicaSchematic`：
 
 不要把教学区和生活区放在一个超大 region 里再靠“空方块”撑大文件；应按空间分块，必要时让多个 region 共享同一原点。
 
-## 12. 主要风险
+## 13. 主要风险
 
 | 风险 | 影响 | 应对 |
 |---|---|---|
@@ -259,7 +337,7 @@ Litematica 当前源码中的 `LitematicaSchematic`：
 | 动态对象 | 时间和状态不确定 | 首版排除，或只导出静态代表 |
 | 版权与来源 | 模型/标识再利用边界 | 保留来源说明，按仓库许可和素材说明处理 |
 
-## 13. 分阶段实施计划
+## 14. 分阶段实施计划
 
 ### 阶段 0：可重复统计与坐标冻结
 
@@ -305,7 +383,7 @@ Litematica 当前源码中的 `LitematicaSchematic`：
 - 如需无 mod 世界：通过 WorldEdit 粘贴或实现 Anvil 写出
 - 进行大文件加载、客户端帧率和区块边界测试
 
-## 14. 验收标准
+## 15. 验收标准
 
 一个可用的 Minecraft 导出应至少满足：
 
@@ -318,15 +396,16 @@ Litematica 当前源码中的 `LitematicaSchematic`：
 - 非空方块与文件大小有记录
 - 在目标 Minecraft 版本和至少一台目标设备上完成实机验证
 
-## 15. 最终建议
+## 16. 最终建议
 
-**建议立项，但按“自建 Minecraft 导出管线”而不是“GLB 格式转换”立项。**
+**建议立项，但按“自建 Minecraft 导出管线”而不是“整校 GLB 格式转换”立项。已有先例主要用来复用成熟环节，不用来代替项目语义。**
 
 第一步不要直接做整校 1 单位/方块投影，而是：
 
-1. 选图书馆做 1 单位/方块 Sponge `.schem` 原型
-2. 在 Litematica 实机验证颜色、尺寸、朝向和薄面处理
-3. 验证通过后，再做 2 单位/方块全校分区总览
-4. 最后实现 `.litematic` 直接写出和无 mod 世界存档
+1. 用现有 `scripts/export-models.ts` 导出图书馆 GLB，尝试 `ObjToSchematic` 的 GLB 导入，得到 `.schem` 或 `.litematic`，先验证“几何能进 Minecraft”
+2. 同时直接用项目几何生成器做图书馆 1 单位/方块 Sponge `.schem`，对比两者在薄墙、窗户、屋顶、材质和完整性上的差异
+3. 在 Litematica 实机验证颜色、尺寸、朝向和薄面处理，并以 Litemapy 或 Litematica-viewer 做自动/人工检查
+4. 验证通过后，再做 2 单位/方块全校分区总览；分片和共享原点思路可参考 Meld，而不是照搬其 OSM 输入
+5. 最后实现 `.litematic` 直接写出和无 mod 世界存档
 
 这样能在最小风险下验证最不确定的部分：**体素化质量、材质映射和 Litematica 实机导入**。如果这三项通过，剩余工作主要是工程量而非技术可行性问题。
