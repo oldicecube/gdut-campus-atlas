@@ -115,29 +115,16 @@ export function convert(inFile, outFile) {
   emitAir(volume);
   const blockData = sink.finish();
 
-  const paletteTags = [];
-  for (const entry of palette) {
-    const w = new ByteWriter();
-    w.u8(TAG.compound);
-    w.str('Name'); w.u8(TAG.string); w.str(entry.name);
-    const bracket = entry.key.indexOf('[');
-    if (bracket !== -1 && entry.key.endsWith(']')) {
-      const props = [];
-      for (const pair of entry.key.slice(bracket + 1, -1).split(',')) {
-        const eq = pair.indexOf('=');
-        if (eq > 0) props.push([pair.slice(0, eq), pair.slice(eq + 1)]);
-      }
-      if (props.length) {
-        w.u8(TAG.compound); w.str('Properties');
-        for (const [k, v] of props) { w.u8(TAG.string); w.str(k); w.u8(TAG.string); w.str(v); }
-        w.u8(0);
-      }
-    }
-    w.u8(0);
-    paletteTags.push(w.result());
-  }
-  const paletteBody = Buffer.concat([Buffer.from([TAG.compound]), Buffer.alloc(4), ...paletteTags]);
-  paletteBody.writeInt32BE(paletteTags.length, 1);
+  // Sponge v2 `Palette` is a Compound mapping block-state string -> int id
+  // (NOT the Litematica-style list). See SchemExporter in ObjToSchematic and
+  // https://github.com/SpongePowered/Schematic-Specification .
+  const paletteBody = new ByteWriter();
+  palette.forEach((entry, id) => {
+    paletteBody.u8(TAG.int);
+    paletteBody.str(entry.key);
+    paletteBody.i32(id);
+  });
+  paletteBody.u8(0);
 
   const root = new ByteWriter();
   root.u8(TAG.compound); root.str('Schematic');
@@ -147,7 +134,7 @@ export function convert(inFile, outFile) {
   root.u8(TAG.short); root.str('Height'); root.i16(height);
   root.u8(TAG.short); root.str('Length'); root.i16(length);
   root.u8(TAG.int); root.str('PaletteMax'); root.i32(palette.length);
-  root.u8(TAG.compound); root.str('Palette'); root.push(paletteBody);
+  root.u8(TAG.compound); root.str('Palette'); root.push(paletteBody.result());
   root.u8(TAG.byteArray); root.str('BlockData'); root.i32(blockData.length); root.push(blockData);
   root.u8(0);
 
