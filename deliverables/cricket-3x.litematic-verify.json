@@ -1,0 +1,34 @@
+{
+  "file": "output\\mc-cricket-3x\\cricket-3x.litematic",
+  "bytes": 109275,
+  "litematicaVersion": 6,
+  "subVersion": 1,
+  "minecraftDataVersion": 3105,
+  "name": "cricket-3x",
+  "author": "gdut-campus-atlas",
+  "regionCount": 1,
+  "enclosingSize": {
+    "x": 401,
+    "y": 40,
+    "z": 391
+  },
+  "regionSize": {
+    "x": 401,
+    "y": 40,
+    "z": 391
+  },
+  "regionPosition": {
+    "x": 0,
+    "y": 0,
+    "z": 0
+  },
+  "paletteEntries": 80,
+  "nonAirBlocks": 157252,
+  "volume": 6271640,
+  "voxelDiff": {
+    "sourceCount": 6271640,
+    "litematicCount": 6271640,
+    "mismatchCount": 0,
+    "sample": []
+  }
+}

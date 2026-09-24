@@ -5,7 +5,7 @@ import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 import {buildings,places,toWorld} from '../src/data/campus';
 import {makeBuilding} from '../src/scene/models';
 import {makeConnections} from '../src/scene/connections';
-import {disposeTree} from '../src/scene/geometry';
+import {disposeTree,mergeScene} from '../src/scene/geometry';
 
 // The procedural models have no raster textures. Node's Blob plus this small
 // FileReader adapter lets the standard Three.js exporter run without a browser.
@@ -18,6 +18,7 @@ class BlobReader {
 Object.assign(globalThis,{FileReader:BlobReader});
 const results=[];
 fs.mkdirSync('models',{recursive:true});
+fs.mkdirSync('output',{recursive:true});
 for(const id of ['library','culture','south-gate','gym','cricket','campus']){
  let input:T.Object3D;
  if(id==='campus'){
@@ -33,8 +34,13 @@ for(const id of ['library','culture','south-gate','gym','cricket','campus']){
  }else{
   input=makeBuilding(buildings.find(b=>b.id==='b-'+id)!);input.position.set(0,0,0);input.rotation.set(0,0,0);
  }
- const data=await new GLTFExporter().parseAsync(input,{binary:true,onlyVisible:true}) as ArrayBuffer;
+ // ObjToSchematic's glTF importer reads raw primitive POSITION buffers and
+ // ignores every node transform, so node.position/rotation would be dropped.
+ // Bake world matrices into the vertices to keep the export import-agnostic.
+ const baked=mergeScene(input);
  disposeTree(input);
+ const data=await new GLTFExporter().parseAsync(baked,{binary:true,onlyVisible:true}) as ArrayBuffer;
+ disposeTree(baked);
  const loaded=await new GLTFLoader().parseAsync(data,'');let meshes=0;
  loaded.scene.traverse(o=>{if(o instanceof T.Mesh){meshes++;const a=o.geometry.getAttribute('position');for(const n of a.array)if(!Number.isFinite(n))throw new Error(`Invalid vertex: ${id}`);}});
  if(!meshes)throw new Error(`Empty export: ${id}`);

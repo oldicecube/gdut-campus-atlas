@@ -1,0 +1,34 @@
+{
+  "file": "output\\mc-south-gate-3x\\south-gate-3x.litematic",
+  "bytes": 407535,
+  "litematicaVersion": 6,
+  "subVersion": 1,
+  "minecraftDataVersion": 3105,
+  "name": "south-gate-3x",
+  "author": "gdut-campus-atlas",
+  "regionCount": 1,
+  "enclosingSize": {
+    "x": 911,
+    "y": 101,
+    "z": 556
+  },
+  "regionSize": {
+    "x": 911,
+    "y": 101,
+    "z": 556
+  },
+  "regionPosition": {
+    "x": 0,
+    "y": 0,
+    "z": 0
+  },
+  "paletteEntries": 161,
+  "nonAirBlocks": 1371233,
+  "volume": 51158116,
+  "voxelDiff": {
+    "sourceCount": 51158116,
+    "litematicCount": 51158116,
+    "mismatchCount": 0,
+    "sample": []
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "file": "output\\mc-library-3x\\library-3x.litematic",
+  "bytes": 287165,
+  "litematicaVersion": 6,
+  "subVersion": 1,
+  "minecraftDataVersion": 3105,
+  "name": "library-3x",
+  "author": "gdut-campus-atlas",
+  "regionCount": 1,
+  "enclosingSize": {
+    "x": 273,
+    "y": 115,
+    "z": 249
+  },
+  "regionSize": {
+    "x": 273,
+    "y": 115,
+    "z": 249
+  },
+  "regionPosition": {
+    "x": 0,
+    "y": 0,
+    "z": 0
+  },
+  "paletteEntries": 125,
+  "nonAirBlocks": 482759,
+  "volume": 7817355,
+  "voxelDiff": {
+    "sourceCount": 7817355,
+    "litematicCount": 7817355,
+    "mismatchCount": 0,
+    "sample": []
+  }
+}

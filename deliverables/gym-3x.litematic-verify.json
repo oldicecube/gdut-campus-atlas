@@ -1,0 +1,34 @@
+{
+  "file": "output\\mc-gym-3x\\gym-3x.litematic",
+  "bytes": 188369,
+  "litematicaVersion": 6,
+  "subVersion": 1,
+  "minecraftDataVersion": 3105,
+  "name": "gym-3x",
+  "author": "gdut-campus-atlas",
+  "regionCount": 1,
+  "enclosingSize": {
+    "x": 655,
+    "y": 91,
+    "z": 383
+  },
+  "regionSize": {
+    "x": 655,
+    "y": 91,
+    "z": 383
+  },
+  "regionPosition": {
+    "x": 0,
+    "y": 0,
+    "z": 0
+  },
+  "paletteEntries": 140,
+  "nonAirBlocks": 796121,
+  "volume": 22828715,
+  "voxelDiff": {
+    "sourceCount": 22828715,
+    "litematicCount": 22828715,
+    "mismatchCount": 0,
+    "sample": []
+  }
+}
