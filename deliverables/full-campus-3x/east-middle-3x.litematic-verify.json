@@ -1,0 +1,34 @@
+{
+  "file": "D:\\Cube GDUT\\gdut-campus-atlas\\output\\ots-east-middle\\east-middle-static-3x.litematic",
+  "bytes": 2091781,
+  "litematicaVersion": 6,
+  "subVersion": 1,
+  "minecraftDataVersion": 3105,
+  "name": "east-middle-static-3x",
+  "author": "gdut-campus-atlas",
+  "regionCount": 1,
+  "enclosingSize": {
+    "x": 1477,
+    "y": 107,
+    "z": 1505
+  },
+  "regionSize": {
+    "x": 1477,
+    "y": 107,
+    "z": 1505
+  },
+  "regionPosition": {
+    "x": 0,
+    "y": 0,
+    "z": 0
+  },
+  "paletteEntries": 184,
+  "nonAirBlocks": 6704334,
+  "volume": 237848695,
+  "voxelDiff": {
+    "sourceCount": 237848695,
+    "litematicCount": 237848695,
+    "mismatchCount": 0,
+    "sample": []
+  }
+}

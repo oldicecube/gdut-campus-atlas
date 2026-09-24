@@ -14,7 +14,10 @@
 - 本项目 GLB 的坐标**本身就是米制**（建模块直接使用 `Building.width/height/depth`），不存在额外“示意单位”换算。因此 **3 方块/米 = 对 GLB 做精确 ×3 均匀缩放**。
 - 五个示例区域已产出 `.schem`（Sponge v2）与 `.litematic`（Litematica v6），最大者南门组团 911×101×556。
 - `.litematic` 经 litemapy **全量逐体素**比对（`mismatchCount: 0`），`.schem` 经 EngineHub SchematicJS 独立解析，non-air 计数与 litemapy 完全一致。
-- 全校 3:1 约 **3907×138×2716 ≈ 14.7 亿**网格单元，必须分片，不能单文件整体转换。
+- **全校园静态模型（地形+树木+全部建筑）已分片跑通 3:1**：6 个分片共 32,236,199 个非空气方块，合并后校园网格 **4431×142×3106**（含留白），`.litematic` 合计约 12.43 MB，全部逐体素 `mismatchCount: 0`。
+- 6 个分片都在**同一共享校园坐标系**内，拼接表（`pasteOrigin`）见 `deliverables/full-campus-3x/manifest.json`；`.schem`/`.litematic` 内部仍是各自局部坐标。
+- 真正的单文件上限不是“校园太大”，而是 **ObjToSchematic 单个进程的 `VoxelMesh` 哈希表**（约 1600 万体素即 `RangeError`）。因此按 3×2 网格分片；每片 ≤1.5 亿体素、≤500 万条非空气索引，均能跑通。
+- 单文件整校仍不可行（约 14.7 亿网格单元），但**分片 + 共享原点的方案已全量产出**，不再只是可行性推测。
 
 ---
 
@@ -94,6 +97,48 @@ Schem 尺寸与 `GLB×3` 的差（多为 +1~2 格）来自体素器 `floor/ceil`
 
 修复：`scripts/export-models.ts` 在导出前调用 `mergeScene()`（`src/scene/geometry.ts`），先把**世界矩阵烘焙进顶点**，再交给 `GLTFExporter`。输出与导入器能力解耦，对归零模型无损、对多楼群组修复。
 
+### 3.2 全校园静态分片（3×2 网格 @ 3:1）
+
+在上节单栋验证通过后，`scripts/export-static-shards.ts` 把 `makeCampusModel()`（地形 + 程序化树木 + 全部已建建筑）在统一世界坐标下裁成 3（列）×2（行）网格，逐片跑 OTS → `indexed_json` → Sponge `.schem` → `.litematic`：
+
+| 分片 | `.litematic` 尺寸 (X×Y×Z) | 非空气 | 调色板 | `.schem` | `.litematic` | 逐体素误差 |
+|---|---|---:|---:|---:|---:|---:|
+| central-north | 1477×141×1547 | 9,112,228 | 205 | 2.44 MB | 2.91 MB | **0** |
+| west-north | 1477×99×1553 | 6,936,456 | 192 | 1.63 MB | 1.96 MB | **0** |
+| east-middle | 1477×107×1505 | 6,704,334 | 184 | 1.75 MB | 2.09 MB | **0** |
+| central-middle | 1477×121×1554 | 6,644,205 | 200 | 3.31 MB | 3.67 MB | **0** |
+| west-middle | 1222×47×1424 | 1,458,287 | 106 | 0.90 MB | 1.25 MB | **0** |
+| east-north | 946×99×1044 | 1,380,689 | 100 | 0.32 MB | 0.54 MB | **0** |
+| **合计** | 校园网格 4431×142×3106 | **32,236,199** | — | **10.35 MB** | **12.43 MB** | **0** |
+
+六个分片共享同一校园坐标系，但每个 `.schem`/`.litematic` 内部仍是**自身局部坐标**。拼接需要 `pasteOrigin`（局部 (0,0,0) 在校园网格中的绝对坐标）：
+
+| 分片 | pasteOrigin (X,Y,Z) | 分片网格尺寸 |
+|---|---|---|
+| west-north | (-1797, -2, -1638) | 1477×99×1553 |
+| central-north | (-320, -2, -1631) | 1477×141×1547 |
+| east-north | (1157, -2, -1128) | 946×99×1044 |
+| west-middle | (-1541, -2, -86) | 1222×47×1424 |
+| central-middle | (-320, -3, -86) | 1477×121×1554 |
+| east-middle | (1157, -3, -85) | 1477×107×1505 |
+
+校园网格原点 `(-1797, -3, -1638)`，总尺寸 `4431×142×3106`。
+
+**坐标系陷阱**：ObjToSchematic 的 `src/mesh.ts::_centreMesh` 会在体素化前把网格重新居中，所以每片的 `.schem`/`.litematic` 落在**自身局部原点**，不是校园坐标。`tools/finalize-shard-manifest.mjs` 从各片裁剪盒反推 `pasteOrigin = otsTightMin + round(centre_metres × mpp)`，并把旧脚本 `ceil(m)·mpp+1` 的**过高 1~2 格的估算尺寸**替换为导出的真实尺寸，写入 `output/static-shards/manifest.json`（并复制到 `deliverables/full-campus-3x/manifest.json`）。
+
+单次 OTS 实测（Windows / Node v22.22.3）：
+
+| 分片 | GLB | 三角面 | 体素化 | 合计 |
+|---|---:|---:|---:|---:|
+| central-north | 28.6 MB | 829,159 | 51.8 s | 98.6 s |
+| west-north | 23.2 MB | 641,728 | 47.5 s | 83.3 s |
+| east-middle | 12.9 MB | 355,671 | 30.9 s | 64.7 s |
+| central-middle | 14.7 MB | 404,307 | 34.2 s | 69.3 s |
+| east-north | 2.4 MB | 64,883 | 5.6 s | 14.4 s |
+| west-middle | 1.5 MB | 39,959 | 5.7 s | 15.3 s |
+
+逐体素校验（`tools/verify-litematic.py`，`.litematic` vs 源 `.schem`）每片耗时 136–502 s、峰值内存 1.2–1.7 GB；另有一个 1:1 整校对照文件（55,484,346 体素）在 79 s 内完成零误差比对。
+
 ---
 
 ## 4. 双重独立校验
@@ -163,12 +208,13 @@ npx.cmd tsx tools/verify-schem-enginehub.ts
 
 ## 6. 全校园规划与边界
 
-`gdut-campus.glb` 边界约 **1302 × 46 × 905 米**（969 网格 / 263 合并网格），3:1 后约 **3907 × 138 × 2716 ≈ 14.7 亿** 网格单元。
+`makeCampusModel()`（地形 + 程序化树木 + 全部已建建筑）边界约 **1477 × 47 × 1036 米**，3:1 后原始网格约 **4431×142×3106 ≈ 19.5 亿** 单元。为避免这个数字误导，注意两点：
 
-- **不要单文件转换**：`.litematic` 位数组与内存都会爆。
-- 必须**分片**：按区域/网格块切分，共享同一世界原点，最后用 Litematica 的 `Region` 或分片投影拼接。
-- 单次 OTS 实测：南门 5100 万体素尚可（约 1 分钟级），全校直接放大 28 倍不现实。
-- 建议先以现有 5 个区域作为“可加载、可辨识”的交付样张，再扩展分片管线。
+- **网格上限 ≠ 体素内容**。ObjToSchematic 只体素化表面壳层，整校非空气方块合计 **32,236,199**（约 3200 万），`.litematic` 合计约 12.4 MB。
+- **真正的单文件瓶颈是 OTS 单个进程的 `VoxelMesh`**（以 `Map` 存 32 位哈希，约 1600 万条目即 `RangeError`），不是校园面积。因此采用 3×2 = 6 分片；每片 ≤3.3 亿网格单元、≤920 万非空气方块，实测均可跑通。
+
+- 分片规则：在**统一世界坐标**下按 3（列）×2（行）网格裁剪，共享同一原点；各片 `.schem`/`.litematic` 保持局部坐标，靠 `pasteOrigin` 拼接（详见 §3.2 与 `deliverables/full-campus-3x/manifest.json`）。
+- 单文件整校（约 14.7 亿网格单元）仍不可行，但**分片 + 共享原点的全量产出已完成**，不再是可行性推测。
 
 ---
 
@@ -180,11 +226,11 @@ ObjToSchematic 的路线是**颜色反推方块调色板 + 几何射线体素化
 2. **材质属性**：透明度、粗糙度、金属度、法线、发光（夜间模式）全部丢失，只保留平均色。
 3. **朝向与细节**：楼梯/栏杆/细柱在 3:1 下可能不足 1 格而被抹平或糊成整块。
 4. **block entity / 功能方块**：无实际功能，仅为视觉方块。
-5. **动态与程序化内容**：glTF 路径本身不含动态对象；`exportModel('campus')` 也不含地形、道路、水面、程序化树木。
+5. **动态与程序化内容**：glTF 路径本身不含动态对象。注意 `makeCampusModel()`（本项目导出入口）**已包含**地形、道路、水面、程序化树木与全部已建建筑，本节分片结果就是它；但相机、灯光、雾、动态车辆、鹈鹕骑行者、标签等表现层对象仍不导出。
 
 ### 更高保真的替代路线
 
-**推荐：项目原生语义体素化**，而不是“导出 GLB 再靠颜色猜方块”。
+**当前交付用的是 GLB → ObjToSchematic 颜色反推路线**（已全量跑通）。若要把“玻璃→玻璃、草地→草方块”这类语义做准，可再走**项目原生语义体素化**：
 
 - 本项目几何由 `Parts.box/cylinder/beam` 等**带语义颜色**的构件组成，可直接在生成端体素化并映射到经挑选的方块集合。
 - 例如外墙玻璃 → 有色玻璃/染色玻璃，草地 → 草方块，步道 → 对应石材，避免 `iron_ore`/`sculk` 这类纯按颜色撞上的方块。
@@ -200,6 +246,8 @@ ObjToSchematic 的路线是**颜色反推方块调色板 + 几何射线体素化
 - `<id>-3x.litematic` — Litematica v6，供游戏内投影
 - `litematic-verify.json` — litemapy 逐体素校验结果
 - `block-stats.json` — 尺寸 / 方块统计 / 调色板
+
+**全校园静态分片**（已随仓库交付，见 `deliverables/full-campus-3x/`）：6 个分片各含 `<name>-3x.schem`、`<name>-3x.litematic`、`<name>-3x.litematic-verify.json`、`<name>-3x.block-stats.json`，外加 `manifest.json`（含 `campusGrid`、每片 `pasteOrigin`、真实 `voxelSize`）。这些文件与 `output/ots-*/` 源产物逐字节一致（SHA256 已核对）。
 
 ## 9. 相关文档
 

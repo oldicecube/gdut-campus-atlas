@@ -1,0 +1,582 @@
+{
+  "date": "2026-09-24T05:44:51.045Z",
+  "source": "makeCampusModel() — terrain + trees + buildings",
+  "blocksPerMetre": 3,
+  "campusBoundsMetres": {
+    "min": [
+      -599.1382446289062,
+      -0.8000000000000299,
+      -546.0400390625
+    ],
+    "max": [
+      877.7225952148438,
+      46,
+      489.30029296875
+    ]
+  },
+  "grid": {
+    "cols": 3,
+    "rows": 2
+  },
+  "shards": [
+    {
+      "name": "west-north",
+      "box": {
+        "minX": -599.1382446289062,
+        "maxX": -106.85129801432294,
+        "minZ": -546.0400390625,
+        "maxZ": -28.369873046875
+      },
+      "file": "output/static-shards/glb/west-north.glb",
+      "bytes": 23165628,
+      "meshes": 81,
+      "vertices": 1926843,
+      "clip": {
+        "inputTriangles": 2324051,
+        "keptTriangles": 641728,
+        "outputTriangles": 642281,
+        "materials": 81
+      },
+      "clippedMs": 1219,
+      "boundsMetres": {
+        "min": [
+          -599.1382446289062,
+          -0.800000011920929,
+          -546.0400390625
+        ],
+        "max": [
+          -106.8512954711914,
+          32,
+          -28.369873046875
+        ],
+        "size": [
+          492.28694915771484,
+          32.80000001192093,
+          517.670166015625
+        ]
+      },
+      "blocksPerMetre": 3,
+      "voxelOrigin": {
+        "x": -1798,
+        "y": -3,
+        "z": -1639
+      },
+      "voxelSize": {
+        "x": 1477,
+        "y": 99,
+        "z": 1553
+      },
+      "objToSchematicSize": 99.4,
+      "campusGrid": {
+        "clipBox": {
+          "min": [
+            -1798,
+            -3,
+            -1639
+          ],
+          "max": [
+            -321,
+            96,
+            -86
+          ]
+        },
+        "pasteOrigin": [
+          -1797,
+          -2,
+          -1638
+        ],
+        "localOrigin": [
+          1,
+          1,
+          1
+        ],
+        "size": [
+          1477,
+          99,
+          1553
+        ],
+        "offsetFromSnapOrigin": [
+          739,
+          50,
+          777
+        ],
+        "nonAir": 6936456
+      },
+      "voxelSizeEstimated": {
+        "x": 1478,
+        "y": 100,
+        "z": 1555
+      }
+    },
+    {
+      "name": "west-middle",
+      "box": {
+        "minX": -599.1382446289062,
+        "maxX": -106.85129801432294,
+        "minZ": -28.369873046875,
+        "maxZ": 489.30029296875
+      },
+      "file": "output/static-shards/glb/west-middle.glb",
+      "bytes": 1468052,
+      "meshes": 55,
+      "vertices": 119877,
+      "clip": {
+        "inputTriangles": 2324051,
+        "keptTriangles": 39249,
+        "outputTriangles": 39959,
+        "materials": 55
+      },
+      "clippedMs": 218,
+      "boundsMetres": {
+        "min": [
+          -513.960205078125,
+          -0.800000011920929,
+          -28.369873046875
+        ],
+        "max": [
+          -106.8512954711914,
+          14.73453140258789,
+          446.6701965332031
+        ],
+        "size": [
+          407.1089096069336,
+          15.53453141450882,
+          475.0400695800781
+        ]
+      },
+      "blocksPerMetre": 3,
+      "voxelOrigin": {
+        "x": -1542,
+        "y": -3,
+        "z": -86
+      },
+      "voxelSize": {
+        "x": 1222,
+        "y": 47,
+        "z": 1424
+      },
+      "objToSchematicSize": 47.603594,
+      "campusGrid": {
+        "clipBox": {
+          "min": [
+            -1542,
+            -3,
+            -86
+          ],
+          "max": [
+            -321,
+            44,
+            1340
+          ]
+        },
+        "pasteOrigin": [
+          -1541,
+          -2,
+          -86
+        ],
+        "localOrigin": [
+          257,
+          1,
+          1553
+        ],
+        "size": [
+          1222,
+          47,
+          1424
+        ],
+        "offsetFromSnapOrigin": [
+          867,
+          24,
+          2266
+        ],
+        "nonAir": 1458287
+      },
+      "voxelSizeEstimated": {
+        "x": 1223,
+        "y": 48,
+        "z": 1427
+      }
+    },
+    {
+      "name": "central-north",
+      "box": {
+        "minX": -106.85129801432294,
+        "maxX": 385.4356486002604,
+        "minZ": -546.0400390625,
+        "maxZ": -28.369873046875
+      },
+      "file": "output/static-shards/glb/central-north.glb",
+      "bytes": 29980304,
+      "meshes": 132,
+      "vertices": 2492466,
+      "clip": {
+        "inputTriangles": 2324051,
+        "keptTriangles": 829159,
+        "outputTriangles": 830822,
+        "materials": 132
+      },
+      "clippedMs": 2127,
+      "boundsMetres": {
+        "min": [
+          -106.8512954711914,
+          -0.800000011920929,
+          -543.9119262695312
+        ],
+        "max": [
+          385.4356384277344,
+          46,
+          -28.369873046875
+        ],
+        "size": [
+          492.2869338989258,
+          46.80000001192093,
+          515.5420532226562
+        ]
+      },
+      "blocksPerMetre": 3,
+      "voxelOrigin": {
+        "x": -321,
+        "y": -3,
+        "z": -1632
+      },
+      "voxelSize": {
+        "x": 1477,
+        "y": 141,
+        "z": 1547
+      },
+      "objToSchematicSize": 141.4,
+      "campusGrid": {
+        "clipBox": {
+          "min": [
+            -321,
+            -3,
+            -1632
+          ],
+          "max": [
+            1156,
+            138,
+            -86
+          ]
+        },
+        "pasteOrigin": [
+          -320,
+          -2,
+          -1631
+        ],
+        "localOrigin": [
+          1478,
+          1,
+          8
+        ],
+        "size": [
+          1477,
+          141,
+          1547
+        ],
+        "offsetFromSnapOrigin": [
+          2216,
+          71,
+          781
+        ],
+        "nonAir": 9112228
+      },
+      "voxelSizeEstimated": {
+        "x": 1478,
+        "y": 142,
+        "z": 1548
+      }
+    },
+    {
+      "name": "central-middle",
+      "box": {
+        "minX": -106.85129801432294,
+        "maxX": 385.4356486002604,
+        "minZ": -28.369873046875,
+        "maxZ": 489.30029296875
+      },
+      "file": "output/static-shards/glb/central-middle.glb",
+      "bytes": 14654236,
+      "meshes": 186,
+      "vertices": 1212921,
+      "clip": {
+        "inputTriangles": 2324051,
+        "keptTriangles": 402134,
+        "outputTriangles": 404307,
+        "materials": 186
+      },
+      "clippedMs": 1105,
+      "boundsMetres": {
+        "min": [
+          -106.8512954711914,
+          -0.800000011920929,
+          -28.369873046875
+        ],
+        "max": [
+          385.4356384277344,
+          38.904998779296875,
+          489.30029296875
+        ],
+        "size": [
+          492.2869338989258,
+          39.704998791217804,
+          517.670166015625
+        ]
+      },
+      "blocksPerMetre": 3,
+      "voxelOrigin": {
+        "x": -321,
+        "y": -3,
+        "z": -86
+      },
+      "voxelSize": {
+        "x": 1477,
+        "y": 121,
+        "z": 1554
+      },
+      "objToSchematicSize": 120.114996,
+      "campusGrid": {
+        "clipBox": {
+          "min": [
+            -321,
+            -3,
+            -86
+          ],
+          "max": [
+            1156,
+            116,
+            1467
+          ]
+        },
+        "pasteOrigin": [
+          -320,
+          -3,
+          -86
+        ],
+        "localOrigin": [
+          1478,
+          0,
+          1553
+        ],
+        "size": [
+          1477,
+          121,
+          1554
+        ],
+        "offsetFromSnapOrigin": [
+          2216,
+          60,
+          2330
+        ],
+        "nonAir": 6644205
+      },
+      "voxelSizeEstimated": {
+        "x": 1478,
+        "y": 121,
+        "z": 1555
+      }
+    },
+    {
+      "name": "east-north",
+      "box": {
+        "minX": 385.4356486002604,
+        "maxX": 877.7225952148438,
+        "minZ": -546.0400390625,
+        "maxZ": -28.369873046875
+      },
+      "file": "output/static-shards/glb/east-north.glb",
+      "bytes": 2350916,
+      "meshes": 28,
+      "vertices": 194649,
+      "clip": {
+        "inputTriangles": 2324051,
+        "keptTriangles": 64126,
+        "outputTriangles": 64883,
+        "materials": 28
+      },
+      "clippedMs": 270,
+      "boundsMetres": {
+        "min": [
+          385.4356384277344,
+          -0.800000011920929,
+          -376.1456604003906
+        ],
+        "max": [
+          700.9181518554688,
+          31.920000076293945,
+          -28.369873046875
+        ],
+        "size": [
+          315.4825134277344,
+          32.720000088214874,
+          347.7757873535156
+        ]
+      },
+      "blocksPerMetre": 3,
+      "voxelOrigin": {
+        "x": 1156,
+        "y": -3,
+        "z": -1129
+      },
+      "voxelSize": {
+        "x": 946,
+        "y": 99,
+        "z": 1044
+      },
+      "objToSchematicSize": 99.16,
+      "campusGrid": {
+        "clipBox": {
+          "min": [
+            1156,
+            -3,
+            -1129
+          ],
+          "max": [
+            2102,
+            95,
+            -86
+          ]
+        },
+        "pasteOrigin": [
+          1157,
+          -2,
+          -1128
+        ],
+        "localOrigin": [
+          2955,
+          1,
+          511
+        ],
+        "size": [
+          946,
+          99,
+          1044
+        ],
+        "offsetFromSnapOrigin": [
+          3428,
+          50,
+          1032
+        ],
+        "nonAir": 1380689
+      },
+      "voxelSizeEstimated": {
+        "x": 948,
+        "y": 100,
+        "z": 1045
+      }
+    },
+    {
+      "name": "east-middle",
+      "box": {
+        "minX": 385.4356486002604,
+        "maxX": 877.7225952148438,
+        "minZ": -28.369873046875,
+        "maxZ": 489.30029296875
+      },
+      "file": "output/static-shards/glb/east-middle.glb",
+      "bytes": 12851280,
+      "meshes": 89,
+      "vertices": 1067013,
+      "clip": {
+        "inputTriangles": 2324051,
+        "keptTriangles": 354600,
+        "outputTriangles": 355671,
+        "materials": 89
+      },
+      "clippedMs": 985,
+      "boundsMetres": {
+        "min": [
+          385.4356384277344,
+          -0.800000011920929,
+          -28.369873046875
+        ],
+        "max": [
+          877.7225952148438,
+          34.244998931884766,
+          473.06976318359375
+        ],
+        "size": [
+          492.2869567871094,
+          35.044998943805695,
+          501.43963623046875
+        ]
+      },
+      "blocksPerMetre": 3,
+      "voxelOrigin": {
+        "x": 1156,
+        "y": -3,
+        "z": -86
+      },
+      "voxelSize": {
+        "x": 1477,
+        "y": 107,
+        "z": 1505
+      },
+      "objToSchematicSize": 106.134997,
+      "campusGrid": {
+        "clipBox": {
+          "min": [
+            1156,
+            -3,
+            -86
+          ],
+          "max": [
+            2633,
+            102,
+            1419
+          ]
+        },
+        "pasteOrigin": [
+          1157,
+          -3,
+          -85
+        ],
+        "localOrigin": [
+          2955,
+          0,
+          1554
+        ],
+        "size": [
+          1477,
+          107,
+          1505
+        ],
+        "offsetFromSnapOrigin": [
+          3693,
+          53,
+          2306
+        ],
+        "nonAir": 6704334
+      },
+      "voxelSizeEstimated": {
+        "x": 1478,
+        "y": 107,
+        "z": 1506
+      }
+    }
+  ],
+  "campusGrid": {
+    "origin": [
+      -1797,
+      -3,
+      -1638
+    ],
+    "size": [
+      4431,
+      142,
+      3106
+    ],
+    "max": [
+      2634,
+      139,
+      1468
+    ],
+    "snapOrigin": [
+      -1798,
+      -3,
+      -1639
+    ],
+    "blocksPerMetre": 3,
+    "note": "每个分片的 .schem/.litematic 都在自身局部坐标系内（ObjToSchematic 会对网格重新居中）；pasteOrigin 给出局部 (0,0,0) 在共享校园网格中的绝对坐标。"
+  },
+  "updated": "2026-09-24T07:17:35.188Z"
+}

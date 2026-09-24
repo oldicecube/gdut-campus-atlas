@@ -1,0 +1,34 @@
+{
+  "file": "D:\\Cube GDUT\\gdut-campus-atlas\\output\\ots-central-north\\central-north-static-3x.litematic",
+  "bytes": 2909991,
+  "litematicaVersion": 6,
+  "subVersion": 1,
+  "minecraftDataVersion": 3105,
+  "name": "central-north-static-3x",
+  "author": "gdut-campus-atlas",
+  "regionCount": 1,
+  "enclosingSize": {
+    "x": 1477,
+    "y": 141,
+    "z": 1547
+  },
+  "regionSize": {
+    "x": 1477,
+    "y": 141,
+    "z": 1547
+  },
+  "regionPosition": {
+    "x": 0,
+    "y": 0,
+    "z": 0
+  },
+  "paletteEntries": 205,
+  "nonAirBlocks": 9112228,
+  "volume": 322173579,
+  "voxelDiff": {
+    "sourceCount": 322173579,
+    "litematicCount": 322173579,
+    "mismatchCount": 0,
+    "sample": []
+  }
+}
