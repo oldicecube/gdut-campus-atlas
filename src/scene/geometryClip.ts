@@ -68,13 +68,20 @@ export function clipGroupToBox(group: T.Object3D, box: ClipBox): {group: T.Group
     const entry = bins.get(key) ?? {mat: src.clone(), positions: []};
     const attr = o.geometry.getAttribute('position');
     const array = attr.array as ArrayLike<number>;
+    // Most campus geometry is indexed (BoxGeometry/ShapeGeometry/pathMesh), so
+    // walk the index buffer when present; reading sequential position triples
+    // would fabricate triangles that do not exist.
+    const index = o.geometry.getIndex();
+    const indexArray = index ? (index.array as ArrayLike<number>) : null;
+    const triangleCount = indexArray ? Math.floor(indexArray.length / 3) : Math.floor(attr.count / 3);
     const tri: Vec3[] = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
     const tmp = new T.Vector3();
-    for (let i = 0; i + 2 < attr.count; i += 3) {
+    for (let i = 0; i < triangleCount; i++) {
       inputTriangles++;
       let minX = Infinity, maxX = -Infinity, minZ = Infinity, maxZ = -Infinity, minY = Infinity, maxY = -Infinity;
       for (let k = 0; k < 3; k++) {
-        tmp.fromArray(array as ArrayLike<number>, (i + k) * 3).applyMatrix4(o.matrixWorld);
+        const v = indexArray ? indexArray[i * 3 + k] : i * 3 + k;
+        tmp.fromArray(array as ArrayLike<number>, v * 3).applyMatrix4(o.matrixWorld);
         tri[k] = [tmp.x, tmp.y, tmp.z];
         minX = Math.min(minX, tmp.x); maxX = Math.max(maxX, tmp.x);
         minY = Math.min(minY, tmp.y); maxY = Math.max(maxY, tmp.y);
