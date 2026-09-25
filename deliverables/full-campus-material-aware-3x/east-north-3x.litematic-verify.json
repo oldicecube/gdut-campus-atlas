@@ -1,6 +1,6 @@
 {
   "file": "deliverables\\full-campus-material-aware-3x\\east-north-3x.litematic",
-  "bytes": 396333,
+  "bytes": 392096,
   "litematicaVersion": 6,
   "subVersion": 1,
   "minecraftDataVersion": 3105,
@@ -22,7 +22,7 @@
     "y": 0,
     "z": 0
   },
-  "paletteEntries": 45,
+  "paletteEntries": 39,
   "nonAirBlocks": 1380689,
   "volume": 97774776,
   "voxelDiff": {

@@ -67,6 +67,18 @@ function semanticRole(materialName?: string): string | undefined {
     return match[1];
 }
 
+function forcedSemanticBlockName(role?: string): string | undefined {
+    switch (role) {
+        case 'water': return 'minecraft:water';
+        case 'grass': return 'minecraft:grass_block';
+        case 'soil': return 'minecraft:dirt';
+        case 'tree_trunk': return 'minecraft:oak_log';
+        case 'tree_leaf': return 'minecraft:oak_leaves';
+        case 'rail': return 'minecraft:iron_bars';
+        default: return undefined;
+    }
+}
+
 function roleMatchesBlock(role: string, blockName: string): boolean {
     const base = blockName.split('[')[0];
     switch (role) {
@@ -117,7 +129,7 @@ function roleCollection(role: string, all: TBlockCollection): TBlockCollection |
     if old not in s: raise SystemExit('block_mesh collection anchor not found')
     s = s.replace(old, new, 1)
     old = "            let block = atlasPalette.getBlock(voxelColour, allBlockCollection, faceVisibility, blockMeshParams.errorWeight);"
-    new = "            const semantic = semanticRole(voxel.materialName);\n            const semanticCollection = semantic ? getSemanticCollection(semantic) : undefined;\n            const colourCollection = semanticCollection ?? colourFallbackCollection;\n            let block = atlasPalette.getBlock(voxelColour, colourCollection, faceVisibility, blockMeshParams.errorWeight);"
+    new = "            const semantic = semanticRole(voxel.materialName);\n            const semanticCollection = semantic ? getSemanticCollection(semantic) : undefined;\n            const forcedName = forcedSemanticBlockName(semantic);\n            let block: TAtlasBlock;\n            if (forcedName) {\n                const template = colourFallbackCollection.blocks.values().next().value as TAtlasBlock;\n                block = {...template, name: forcedName};\n            } else {\n                const colourCollection = semanticCollection ?? colourFallbackCollection;\n                block = atlasPalette.getBlock(voxelColour, colourCollection, faceVisibility, blockMeshParams.errorWeight);\n            }"
     if old not in s: raise SystemExit('block_mesh assignment anchor not found')
     s = s.replace(old, new, 1)
     old = "                block = atlasPalette.getBlock(voxelColour, nonFallableBlockCollection, faceVisibility, blockMeshParams.errorWeight);"
@@ -125,7 +137,7 @@ function roleCollection(role: string, all: TBlockCollection): TBlockCollection |
     if old not in s: raise SystemExit('block_mesh fallable assignment anchor not found')
     s = s.replace(old, new, 1)
     old = "            if (AppRuntimeConstants.Get.GRASS_LIKE_BLOCKS.has(block.name)) {"
-    new = "            if (semantic && !semanticCollection && AppRuntimeConstants.Get.GRASS_LIKE_BLOCKS.has(block.name)) {"
+    new = "            if (!forcedName && semantic && !semanticCollection && AppRuntimeConstants.Get.GRASS_LIKE_BLOCKS.has(block.name)) {"
     if old not in s: raise SystemExit('block_mesh grass anchor not found')
     s = s.replace(old, new, 1)
     block.write_text(s, encoding='utf-8', newline='\n')
