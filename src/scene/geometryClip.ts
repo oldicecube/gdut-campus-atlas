@@ -64,7 +64,8 @@ export function clipGroupToBox(group: T.Object3D, box: ClipBox): {group: T.Group
   group.traverse(o => {
     if (!(o instanceof T.Mesh) || o instanceof T.InstancedMesh || Array.isArray(o.material)) return;
     const src = o.material as T.MeshStandardMaterial;
-    const key = (src.color?.getHexString() ?? src.uuid) + '-' + src.opacity + '-' + src.side;
+    const role = src.userData?.minecraftRole ?? (typeof src.name === 'string' && src.name.startsWith('mc:') ? src.name.split(':')[1] : 'unknown');
+    const key = (src.color?.getHexString() ?? src.uuid) + '-' + role + '-' + src.opacity + '-' + src.side;
     const entry = bins.get(key) ?? {mat: src.clone(), positions: []};
     const attr = o.geometry.getAttribute('position');
     const array = attr.array as ArrayLike<number>;
@@ -108,7 +109,8 @@ export function clipGroupToBox(group: T.Object3D, box: ClipBox): {group: T.Group
     const g = new T.BufferGeometry();
     g.setAttribute('position', new T.Float32BufferAttribute(v.positions, 3));
     const mesh = new T.Mesh(g, v.mat);
-    mesh.name = 'clipped-' + (v.mat as T.MeshStandardMaterial).color?.getHexString();
+    const material = v.mat as T.MeshStandardMaterial;
+    mesh.name = 'clipped-' + (material.userData?.minecraftRole ?? (typeof material.name === 'string' ? material.name : 'unknown')) + '-' + material.color?.getHexString();
     result.add(mesh);
   }
   return {group: result, stats: {inputTriangles, keptTriangles, outputTriangles, materials}};

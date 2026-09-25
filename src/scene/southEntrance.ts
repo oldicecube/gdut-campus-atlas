@@ -7,8 +7,9 @@ import {mullionedWindow} from './facadeDetails';
 import {makeEntranceGardens} from './entranceGardens';
 import {officeFlowerBox,officeSign,officePlatformStair} from './officeDetails';
 import {nearPodiumWell} from './entrancePodium';
+import {mcColor} from './minecraftMaterials';
 
-const stone='#c4bbaa',light='#ebe7dc',glass='#52696a',metal='#bac4be';
+const stone=mcColor('stone','#c4bbaa'),light=mcColor('rail','#ebe7dc'),glass=mcColor('glass','#52696a'),metal=mcColor('metal','#bac4be');
 // Sparse plaza planting read from the user's overhead crop; these are local
 // coordinates below the stair garden, not a procedural grove over the square.
 export const entrancePlazaTrees=[{x:88,z:86,r:2.9},{x:85,z:99,r:2.5},{x:92,z:112,r:2.6},{x:122,z:86,r:3.1},{x:133,z:98,r:2.5},{x:158,z:81,r:3},{x:158,z:89,r:2.5},{x:162,z:98,r:2.4}];

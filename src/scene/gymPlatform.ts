@@ -2,9 +2,10 @@ import * as T from 'three';
 import {Parts} from './geometry';
 import {openRail} from './facadeDetails';
 import {gymWestCourts} from './gymWestCourts';
+import {mcColor} from './minecraftMaterials';
 
 export const gymPlatformY=10.1;
-const white='#ebece4',cream='#d2d1c5';
+const white=mcColor('sport_line','#ebece4'),cream=mcColor('paving','#d2d1c5');
 
 /** Every overlapping upper slab shares the stairs and open-air court wells. */
 export function gymUpperSlab(p:Parts,w:number,d:number,x0:number,x1:number,z0:number,z1:number,thickness:number){

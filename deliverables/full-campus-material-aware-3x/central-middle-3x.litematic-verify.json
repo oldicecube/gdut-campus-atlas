@@ -1,0 +1,34 @@
+{
+  "file": "deliverables\\full-campus-material-aware-3x\\central-middle-3x.litematic",
+  "bytes": 4334844,
+  "litematicaVersion": 6,
+  "subVersion": 1,
+  "minecraftDataVersion": 3105,
+  "name": "central-middle-material-aware-3x",
+  "author": "gdut-campus-atlas",
+  "regionCount": 1,
+  "enclosingSize": {
+    "x": 1477,
+    "y": 121,
+    "z": 1554
+  },
+  "regionSize": {
+    "x": 1477,
+    "y": 121,
+    "z": 1554
+  },
+  "regionPosition": {
+    "x": 0,
+    "y": 0,
+    "z": 0
+  },
+  "paletteEntries": 72,
+  "nonAirBlocks": 6644205,
+  "volume": 277726218,
+  "voxelDiff": {
+    "sourceCount": 277726218,
+    "litematicCount": 277726218,
+    "mismatchCount": 0,
+    "sample": []
+  }
+}

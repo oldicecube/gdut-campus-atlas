@@ -2,6 +2,7 @@ import * as T from 'three';
 import {buildings,toWorld} from '../data/campus';
 import {Parts} from './geometry';
 import {valleyPortal} from './teachingEntrance';
+import {mcColor} from './minecraftMaterials';
 
 /** Reconstructed from the user's photo looking south through the courtyard
  * toward the library. Leave the transverse road and entrance bridge clear. */
@@ -15,7 +16,7 @@ export function teachingCourtyardRows(){
 }
 
 export function makeTeachingCourtyard(p:Parts){
- const [x]=valleyPortal.center,base=1.22,ivory='#eeeade',steel='#c5c8bb';
+ const [x]=valleyPortal.center,base=1.22,ivory=mcColor('wall','#eeeade'),steel=mcColor('metal','#c5c8bb');
  for(const row of teachingCourtyardRows()){
   p.box(valleyPortal.width,.16,row.z1-row.z0,x,base-.08,(row.z0+row.z1)/2,'#c8c4b3');
   // Paving joints follow the centre aisle, with planting confined to low pots.

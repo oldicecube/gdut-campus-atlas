@@ -1,12 +1,13 @@
 import {Parts} from './geometry';
 import type {Building} from '../data/campus';
+import {mcColor} from './minecraftMaterials';
 
 /** Roof proportions inferred from the user's oblique aerial; the four square
  * heads and the central rectangular element are visible, but their uses and
  * measured dimensions are not established by the photograph. */
 export function makeLibraryRoof(b:Building,p:Parts){
  const {width:w,depth:d,height:h}=b,deck=h+.5;
- const pale='#e1dfd2',rim='#eeeae0',shade='#898d83';
+ const pale=mcColor('roof','#e1dfd2'),rim=mcColor('roof','#eeeae0'),shade=mcColor('roof','#898d83');
  const heads=[
   {x:-w*.22,z:-d*.22,color:'#719783'},
   {x:w*.22,z:-d*.22,color:'#d29355'},

@@ -1,7 +1,8 @@
 import {Parts} from './geometry';
 import {basketballHoop} from './outdoorCourts';
+import {mcColor} from './minecraftMaterials';
 
-const white='#ebece4';
+const white=mcColor('sport_line','#ebece4');
 export const gymCourtY=3.64;
 
 /** Two recessed outdoor courts west of the hall, north volleyball / south basketball.

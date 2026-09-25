@@ -14,7 +14,8 @@ import {researchBuilding} from './researchBuildings';
 import {campusPlaza} from './campusPlazas';
 import {Parts,flatPolygon,pathMesh} from './geometry';
 import {type Building,toWorld} from '../data/campus';
-const ivory='#eee9dc',glass='#45626a',concrete='#c7c9bb',roof='#dedfce',dark='#647879',wood='#a87555';
+import {mcMaterial} from './minecraftMaterials';
+const ivory=mcMaterial('wall','#eee9dc'),glass=mcMaterial('glass','#45626a'),concrete=mcMaterial('wall','#c7c9bb'),roof=mcMaterial('roof','#dedfce'),dark=mcMaterial('metal','#647879'),wood=mcMaterial('wood','#a87555');
 function windows(p:Parts,w:number,d:number,h:number,floors:number,color=glass){const nx=Math.max(3,Math.round(w/5)),nz=Math.max(2,Math.round(d/5));for(let f=0;f<floors;f++){const y=3+(h-4)*(f+.5)/floors;for(let i=0;i<nx;i++){const x=-w/2+(i+.5)*w/nx;p.box(w/nx*.55,1.6,.22,x,y,d/2+.15,color);p.box(w/nx*.55,1.6,.22,x,y,-d/2-.15,color);}for(let j=0;j<nz;j++){const z=-d/2+(j+.5)*d/nz;p.box(.22,1.6,d/nz*.55,w/2+.15,y,z,color);p.box(.22,1.6,d/nz*.55,-w/2-.15,y,z,color);}}}
 // Photo review 2026-09-18: continuous neutral metal cladding with recessed
 // balcony openings, rather than a field of projecting colored cubes.
@@ -173,7 +174,8 @@ function sports(b:Building,p:Parts,group:T.Group){const {width:w,depth:d}=b;
 }
 export function makeBuilding(b:Building,detailed=true){const group=new T.Group();group.name=b.id;group.userData={buildingId:b.id,placeIds:b.placeIds,heightBasis:b.heightBasis};const [x,z]=toWorld(b.position);group.position.set(x,1,z);group.rotation.y=b.rotation;
  if(b.kind==='lake')return group;
- const p=new Parts();if(!detailed&& !['field','court','plaza'].includes(b.kind)){p.box(b.width,b.height,b.depth,0,b.height/2,0,b.color);}else switch(b.kind){case 'library':library(b,p);break;case 'teaching':detailedTeaching(b,p);break;case 'office':if(['b-admin','b-comprehensive'].includes(b.id))makeEntranceOffice(b,p);else academic(b,p);break;case 'gate':gate(b,p);break;case 'gym':makeGym(b,p);break;case 'culture':if(b.id==='b-culture')makeCulture(b,p);else if(b.id==='b-conference')conference(b,p);else culture(b,p);break;case 'dorm':dorm(b,p);break;case 'dining':detailedDining(b,p);break;case 'field':case 'court':if(b.id==='b-cricket')makeCricket(b,p);else sports(b,p,group);break;case 'plaza':campusPlaza(b,p,group);break;default:academic(b,p);}
+ const defaultRole=b.kind==='field'||b.kind==='court'?'sport_surface':b.kind==='plaza'?'paving':'wall';
+ const p=new Parts(defaultRole);if(!detailed&& !['field','court','plaza'].includes(b.kind)){p.box(b.width,b.height,b.depth,0,b.height/2,0,b.color);}else switch(b.kind){case 'library':library(b,p);break;case 'teaching':detailedTeaching(b,p);break;case 'office':if(['b-admin','b-comprehensive'].includes(b.id))makeEntranceOffice(b,p);else academic(b,p);break;case 'gate':gate(b,p);break;case 'gym':makeGym(b,p);break;case 'culture':if(b.id==='b-culture')makeCulture(b,p);else if(b.id==='b-conference')conference(b,p);else culture(b,p);break;case 'dorm':dorm(b,p);break;case 'dining':detailedDining(b,p);break;case 'field':case 'court':if(b.id==='b-cricket')makeCricket(b,p);else sports(b,p,group);break;case 'plaza':campusPlaza(b,p,group);break;default:academic(b,p);}
  group.add(p.finish());return group;
 }
 

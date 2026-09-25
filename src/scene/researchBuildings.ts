@@ -2,7 +2,8 @@ import {Parts} from './geometry';
 import {courtyardMass} from './courtyard';
 import type {Building} from '../data/campus';
 import {mullionedWindow,openRail} from './facadeDetails';
-const white='#e8e8de',glass='#74969a';
+import {mcColor} from './minecraftMaterials';
+const white=mcColor('wall','#e8e8de'),glass=mcColor('glass','#74969a');
 export function researchBuilding(b:Building,p:Parts){
  const {width:w,depth:d,height:h}=b,lab=b.kind==='lab',color=lab?'#8bab99':b.id==='b-science'||['b-engineering-3','b-engineering-4'].includes(b.id)?'#b97662':'#82a6b5';
  const base=3.8,floors=Math.max(1,b.floors-1),step=(h-base)/floors;

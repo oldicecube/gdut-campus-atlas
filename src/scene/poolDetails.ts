@@ -4,8 +4,9 @@ import {openRail} from './facadeDetails';
 import {gymUpperSlab} from './gymPlatform';
 import {trackGalleryDepth,trackGalleryOffset} from './sportsLayout';
 import glyphs from '../data/culture-motto.json';
+import {mcColor} from './minecraftMaterials';
 
-const white='#ebece4',tile='#479aaa',line='#225766';
+const white=mcColor('wall','#ebece4'),tile=mcColor('tile','#479aaa'),line=mcColor('tile','#225766');
 export const poolWaterY=2.78;
 export function poolHoles(w:number,d:number){return [w*.30,w*.63].map(x=>({x,z:d*.62,w:w*.23,d:d*.54}));}
 

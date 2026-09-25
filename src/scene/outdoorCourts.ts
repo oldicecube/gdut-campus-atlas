@@ -1,8 +1,9 @@
 import * as T from 'three';
 import type {Building} from '../data/campus';
 import {Parts,pathMesh} from './geometry';
+import {mcColor} from './minecraftMaterials';
 
-const blue='#339dbb',surround='#70a99e',lineColor='#ebece4',pole='#477b70';
+const blue=mcColor('sport_surface','#339dbb'),surround=mcColor('sport_surface','#70a99e'),lineColor=mcColor('sport_line','#ebece4'),pole=mcColor('rail','#477b70');
 export function basketballHoop(p:Parts,x:number,end:number,side:number,y:number){
  const foot=end+side*1.15,board=end-side*.25,ring=end-side*.68;
  p.box(.85,.16,.85,x,y-.01,foot,'#c6c9bc');

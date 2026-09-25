@@ -6,8 +6,9 @@ import {openRail} from './facadeDetails';
 import {poolDeck,makePoolDetails,makeTrackGallery} from './poolDetails';
 import {grandstandLength} from './sportsLayout';
 import {makeGymWestCourts} from './gymWestCourts';
+import {mcColor} from './minecraftMaterials';
 
-const white='#ebece4',slab='#c9ccbf',steel='#aebbb5';
+const white=mcColor('sport_line','#ebece4'),slab=mcColor('sport_surface','#c9ccbf'),steel=mcColor('metal','#aebbb5');
 type P3=[number,number,number];
 
 // Explicit front/back triangles keep the thin shells visible from underneath.

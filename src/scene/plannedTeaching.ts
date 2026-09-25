@@ -7,7 +7,8 @@ import signs from '../data/teaching-signs.json';
 import {cutTeachingMass,teachingEntranceCut} from './teachingEntrance';
 import {Parts} from './geometry';
 import {doglegStair,mullionedWindow,openRail} from './facadeDetails';
-const cream='#ded7bd',green='#748b71',rail='#4e746b';
+import {mcColor} from './minecraftMaterials';
+const cream=mcColor('wall','#ded7bd'),green=mcColor('grass','#748b71'),rail=mcColor('rail','#4e746b');
 export function teachingStairBay(b:Building){return {x:(['b-teaching-5','b-teaching-6'].includes(b.id)?-1:1)*(b.width/2-4.1),z:b.depth/2-5.1,width:8.2,depth:10.2};}
 function roofSign(p:Parts,text:string,x:number,y:number,z:number){
  [...text].forEach((char,i)=>{

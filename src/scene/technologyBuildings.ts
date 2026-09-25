@@ -1,7 +1,8 @@
 import {Parts} from './geometry';
 import {courtyardMass,type CourtOpening} from './courtyard';
 import type {Building} from '../data/campus';
-const wall='#e8e2d6',white='#eeeede',glass='#829c9f',sand='#be9e82';
+import {mcColor} from './minecraftMaterials';
+const wall=mcColor('wall','#e8e2d6'),white=mcColor('wall','#eeeede'),glass=mcColor('glass','#829c9f'),sand=mcColor('stone','#be9e82');
 export function technologyBuilding(b:Building,p:Parts){
  const {width:w,depth:d,height:h}=b,compact=b.id.startsWith('b-virtue'),atrium=b.id==='b-innovation-a';
  const holes:CourtOpening[]=atrium?[{x:0,z:-d*.04,width:w*.43,depth:d*.4}]:[];

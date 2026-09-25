@@ -2,7 +2,8 @@ import {Parts} from './geometry';
 import {courtyardMass} from './courtyard';
 import type {Building} from '../data/campus';
 import {doglegStair,mullionedWindow} from './facadeDetails';
-const slab='#c4c6ba',railColor='#53736d',light='#e3e3d7',glass='#617d80';
+import {mcColor} from './minecraftMaterials';
+const slab=mcColor('wall','#c4c6ba'),railColor=mcColor('rail','#53736d'),light=mcColor('wall','#e3e3d7'),glass=mcColor('glass','#617d80');
 function rail(p:Parts,x0:number,x1:number,z:number,y:number,roof=false){
  const thickness=roof?.14:.10;
  for(let k=0;k<4;k++)p.box(x1-x0,thickness,thickness,(x0+x1)/2,y+.25+k*.28,z,railColor);

@@ -13,6 +13,7 @@ import {makeWoodedHill,woodedHillHeight,makeAdministrationFootbridge} from './wo
 import {excludesPodiumTree} from './entrancePodium';
 import {makeBuilding} from './models';
 import {makeConnections} from './connections';
+import {mcMaterial} from './minecraftMaterials';
 
 /**
  * Headless-friendly assembly of the whole campus model.
@@ -42,21 +43,21 @@ export type CampusModelParts = {
 /** Ground, paving, water, roads, park, wooded hill and campus gates. */
 export function makeCampusTerrain():T.Group {
  const terrain=new T.Group();terrain.name='campus-terrain';
- landPolygons.forEach(poly=>{const wp=poly.map(toWorld);terrain.add(flatPolygon(wp,'#b9c6a7',-.8));terrain.add(pathMesh([...wp,wp[0]],2.6,'#dce0cc',.1));});
+ landPolygons.forEach(poly=>{const wp=poly.map(toWorld);terrain.add(flatPolygon(wp,mcMaterial('grass','#b9c6a7'),-.8));terrain.add(pathMesh([...wp,wp[0]],2.6,mcMaterial('paving','#dce0cc'),.1));});
  // Canal that separates west residences from east residences.
- residentialWaters.slice(1).forEach(poly=>terrain.add(flatPolygon(poly.map(toWorld),'#87b8b8',.13)));
+ residentialWaters.slice(1).forEach(poly=>terrain.add(flatPolygon(poly.map(toWorld),mcMaterial('water','#87b8b8'),.13)));
  terrain.add(makeResidentialPark(),makeWoodedHill(),makeAdministrationFootbridge());
- lakeBankRings.forEach(poly=>{const wp=poly.map(toWorld);terrain.add(pathMesh([...wp,wp[0]],8,'#d8d4bd',.1));});
- lakePolygons.forEach(poly=>terrain.add(flatPolygon(poly.map(toWorld),'#7faeb0',.13)));
- terrain.add(flatPolygon(lakeIsland.map(toWorld),'#b9c6a7',.25));
- terrain.add(flatPolygon(libraryWestForecourt.map(toWorld),'#ded8c7',.56));
+ lakeBankRings.forEach(poly=>{const wp=poly.map(toWorld);terrain.add(pathMesh([...wp,wp[0]],8,mcMaterial('shore','#d8d4bd'),.1));});
+ lakePolygons.forEach(poly=>terrain.add(flatPolygon(poly.map(toWorld),mcMaterial('water','#7faeb0'),.13)));
+ terrain.add(flatPolygon(lakeIsland.map(toWorld),mcMaterial('grass','#b9c6a7'),.25));
+ terrain.add(flatPolygon(libraryWestForecourt.map(toWorld),mcMaterial('paving','#ded8c7'),.56));
  terrain.add(makeRoadNetwork());
- promenades.forEach(p=>terrain.add(pathMesh(p.map(toWorld),3.4,'#e3dbc5',.5)));
+ promenades.forEach(p=>terrain.add(pathMesh(p.map(toWorld),3.4,mcMaterial('paving','#e3dbc5'),.5)));
  // Shared footprints keep library paving and vegetation clear of the avenues.
- terrain.add(flatPolygon(libraryEastForecourt.map(toWorld),'#ded8c7',.53));
+ terrain.add(flatPolygon(libraryEastForecourt.map(toWorld),mcMaterial('paving','#ded8c7'),.53));
  for(const gate of places.filter(p=>p.id.includes('gate')||p.id==='academic-nw')){
   const [x,z]=toWorld(gate.position);const g=new T.Group();
-  for(let i=0;i<7;i++){const stripe=new T.Mesh(new T.BoxGeometry(1.1,.08,9),new T.MeshStandardMaterial({color:'#f0ecdc'}));stripe.position.x=(i-3)*2.2;g.add(stripe);}
+  for(let i=0;i<7;i++){const stripe=new T.Mesh(new T.BoxGeometry(1.1,.08,9),new T.MeshStandardMaterial({color:'#f0ecdc',name:'mc:sport_line:f0ecdc'}));stripe.position.x=(i-3)*2.2;g.add(stripe);}
   g.position.set(x,.7,z);g.rotation.y=gate.id==='east-gate'?Math.PI/2:gate.id==='academic-nw'?0:.39;terrain.add(g);
  }
  return terrain;
@@ -108,11 +109,11 @@ export function makeCampusTrees():T.Group {
  }
  for(const [color,geoms] of canopies){
   const merged=mergeGeometries(geoms,false);geoms.forEach(g=>g.dispose());
-  const mesh=new T.Mesh(merged,new T.MeshStandardMaterial({color,roughness:1}));
+  const mesh=new T.Mesh(merged,new T.MeshStandardMaterial({color,roughness:1,name:'mc:tree_leaf:'+color.replace('#','')}));
   mesh.name='campus-trees';mesh.castShadow=true;mesh.receiveShadow=true;group.add(mesh);
  }
  const trunkMerged=mergeGeometries(trunks,false);trunks.forEach(g=>g.dispose());
- const trunkMesh=new T.Mesh(trunkMerged,new T.MeshStandardMaterial({color:'#8f9273',roughness:1}));
+ const trunkMesh=new T.Mesh(trunkMerged,new T.MeshStandardMaterial({color:'#8f9273',roughness:1,name:'mc:tree_trunk:8f9273'}));
  trunkMesh.name='campus-trunks';trunkMesh.castShadow=true;trunkMesh.receiveShadow=true;group.add(trunkMesh);
  return group;
 }

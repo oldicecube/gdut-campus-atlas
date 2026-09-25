@@ -2,8 +2,9 @@ import * as T from 'three';
 import {Parts} from './geometry';
 import {openRail} from './facadeDetails';
 import glyphs from '../data/office-inscription.json';
+import {mcColor} from './minecraftMaterials';
 
-const white='#ebe7dc',stone='#c4bbaa';
+const white=mcColor('wall','#ebe7dc'),stone=mcColor('stone','#c4bbaa');
 export function officeFlowerBox(p:Parts,x:number,y:number,z:number,width:number,flower:boolean){
  p.box(width,.42,.66,x,y+.21,z,'#aaa58e');
  for(let i=0;i<Math.ceil(width/.85);i++){

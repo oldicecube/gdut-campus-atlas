@@ -6,6 +6,7 @@ import {teachingPlanPoint} from '../data/teachingPlan';
 import {teachingFloorHeight} from '../data/teachingLevels';
 import type {Building} from '../data/campus';
 import type {CourtOpening} from './courtyard';
+import {mcColor} from './minecraftMaterials';
 
 export const valleyPortal={center:teachingPlanPoint([248,454]),width:28,depth:27};
 export function teachingEntranceCut(b:Building):CourtOpening|undefined{
@@ -27,7 +28,7 @@ export function cutTeachingMass(p:Parts,w:number,d:number,holes:CourtOpening[],h
 }
 
 export function makeValleyPortal(p:Parts){
- const [x,front]=valleyPortal.center,back=front-valleyPortal.depth,cream='#ded7bd',green='#748b71',rail='#4e746b',roof=3*teachingFloorHeight+1,bridge=11.5;
+ const [x,front]=valleyPortal.center,back=front-valleyPortal.depth,cream=mcColor('wall','#ded7bd'),green=mcColor('grass','#748b71'),rail=mcColor('rail','#4e746b'),roof=3*teachingFloorHeight+1,bridge=11.5;
  // The photographed bridge and roof frame cross an open entrance, rather
  // than an occupied classroom wall. All elevations include model ground +1.
  p.box(28,.65,3,x,bridge,front-1.5,green);

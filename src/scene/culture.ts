@@ -4,8 +4,9 @@ import inscription from '../data/culture-inscription.json';
 import type {Building,Point} from '../data/campus';
 import {cultureSiteRise,cultureGroundHeight,makeCultureForecourt} from './cultureForecourt';
 import {makeCultureMottos} from './cultureMotto';
+import {mcColor} from './minecraftMaterials';
 
-const stone='#e3e5dd',white='#f1f0e6',glass='#416973',frame='#b4c6c3',roof='#c8cbc2';
+const stone=mcColor('stone','#e3e5dd'),white=mcColor('wall','#f1f0e6'),glass=mcColor('glass','#416973'),frame=mcColor('metal','#b4c6c3'),roof=mcColor('roof','#c8cbc2');
 function solid(p:Parts,points:Point[],height:number,y:number,color:string){
  const s=new T.Shape();points.forEach(([x,z],i)=>i?s.lineTo(x,-z):s.moveTo(x,-z));s.closePath();
  const g=new T.ExtrudeGeometry(s,{depth:height,bevelEnabled:false,curveSegments:36});g.rotateX(-Math.PI/2);p.add(g,color,[0,y,0]);
@@ -76,7 +77,7 @@ export function makeCulture(b:Building,p:Parts){
  for(const [x,span] of [[w*.16,w*.11],[w*.44,w*.12]])for(let j=0;j<9;j++)p.box(span,.19,.7,x,1.3+j*(plinth-1.2)/9,d*.35+5.5-j*.6,stone);
  // Raise the hall and entry stairs together, then fill beneath the plinth.
  // The landscaped approach has real elevation, not lines on a flat slab.
- for(const geometries of p.bins.values())for(const geometry of geometries)geometry.translate(0,cultureSiteRise,0);
+ for(const entry of p.bins.values())for(const geometry of entry.geoms)geometry.translate(0,cultureSiteRise,0);
  solid(p,outline,cultureSiteRise,0,'#b6bfb7');
  const frontZ=d*.55,foreD=d*.64;makeCultureForecourt(p,w,d);
  makeCultureMottos(p,w,d);

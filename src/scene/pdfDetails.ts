@@ -3,7 +3,8 @@ import {Parts} from './geometry';
 import type {Building,Point} from '../data/campus';
 import {teachingPlan} from '../data/teachingPlan';
 import {plannedTeaching} from './plannedTeaching';
-const white='#eeeede',glass='#74959a',roof='#d2d7cc';
+import {mcColor} from './minecraftMaterials';
+const white=mcColor('wall','#eeeede'),glass=mcColor('glass','#74959a'),roof=mcColor('roof','#d2d7cc');
 function extrude(p:Parts,points:Point[],h:number,y:number,color:string){const s=new T.Shape();points.forEach(([x,z],i)=>i?s.lineTo(x,-z):s.moveTo(x,-z));s.closePath();const g=new T.ExtrudeGeometry(s,{depth:h,bevelEnabled:false});g.rotateX(-Math.PI/2);p.add(g,color,[0,y,0]);}
 function conferenceOutline(w:number,d:number):Point[]{
  const s=new T.Shape();s.moveTo(-w*.5,-d*.45);s.lineTo(w*.5,-d*.45);s.lineTo(w*.5,d*.12);
