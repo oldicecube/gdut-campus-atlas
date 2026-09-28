@@ -2,7 +2,7 @@
 $repo=(Resolve-Path (Join-Path $PSScriptRoot '..')).Path
 $otsRoot=if($env:OTS_ROOT){$env:OTS_ROOT}else{'D:\Cube GDUT\ObjToSchematic-src\ObjToSchematic-ots-1.0'}
 $manifest=Get-Content -LiteralPath (Join-Path $repo 'output/material-aware-static-shards/manifest.json') -Raw -Encoding utf8 | ConvertFrom-Json
-$runRoot=Join-Path $repo 'output/material-aware-ots'
+$runRoot=if($env:OTS_OUTPUT_ROOT){$env:OTS_OUTPUT_ROOT}else{Join-Path $repo 'output/material-aware-ots'}
 New-Item -ItemType Directory -Force -Path $runRoot | Out-Null
 $env:NODE_OPTIONS='--max-old-space-size=8192'
 $python=Join-Path $repo '..\.venv-litemapy\Scripts\python.exe'

@@ -1,0 +1,2237 @@
+{
+  "generated": "2026-09-28T10:46:03.426Z",
+  "source": "deliverables/full-campus-clean-3x",
+  "blocksPerMetre": 3,
+  "tileSizeXZ": 500,
+  "axisConvention": "x increases west-to-east; z increases north-to-south; x00-z00 is the northwest tile; positive direction is NW to SE",
+  "campusGrid": {
+    "origin": [
+      -1797,
+      -3,
+      -1638
+    ],
+    "size": [
+      4431,
+      142,
+      3106
+    ],
+    "max": [
+      2634,
+      139,
+      1468
+    ],
+    "cols": 9,
+    "rows": 7,
+    "tileHeightY": 142
+  },
+  "totalNonAir": 32231981,
+  "rawNonAir": 32236199,
+  "paletteEntriesGlobal": 51,
+  "tiles": [
+    {
+      "name": "campus-500-x00-z00",
+      "coord": {
+        "x": 0,
+        "z": 0
+      },
+      "empty": false,
+      "nonAir": 226497,
+      "conflicts": 0,
+      "pasteOrigin": [
+        -1797,
+        -2,
+        -1638
+      ],
+      "size": [
+        500,
+        94,
+        500
+      ],
+      "gridBox": {
+        "min": [
+          -1797,
+          -2,
+          -1638
+        ],
+        "max": [
+          -1298,
+          91,
+          -1139
+        ]
+      },
+      "schem": "campus-500-x00-z00.schem",
+      "litematic": "campus-500-x00-z00.litematic",
+      "bytes": 68010
+    },
+    {
+      "name": "campus-500-x01-z00",
+      "coord": {
+        "x": 1,
+        "z": 0
+      },
+      "empty": false,
+      "nonAir": 159530,
+      "conflicts": 0,
+      "pasteOrigin": [
+        -1297,
+        -2,
+        -1638
+      ],
+      "size": [
+        500,
+        47,
+        500
+      ],
+      "gridBox": {
+        "min": [
+          -1297,
+          -2,
+          -1638
+        ],
+        "max": [
+          -798,
+          44,
+          -1139
+        ]
+      },
+      "schem": "campus-500-x01-z00.schem",
+      "litematic": "campus-500-x01-z00.litematic",
+      "bytes": 83301
+    },
+    {
+      "name": "campus-500-x02-z00",
+      "coord": {
+        "x": 2,
+        "z": 0
+      },
+      "empty": false,
+      "nonAir": 313316,
+      "conflicts": 0,
+      "pasteOrigin": [
+        -797,
+        -2,
+        -1638
+      ],
+      "size": [
+        500,
+        94,
+        500
+      ],
+      "gridBox": {
+        "min": [
+          -797,
+          -2,
+          -1638
+        ],
+        "max": [
+          -298,
+          91,
+          -1139
+        ]
+      },
+      "schem": "campus-500-x02-z00.schem",
+      "litematic": "campus-500-x02-z00.litematic",
+      "bytes": 56874
+    },
+    {
+      "name": "campus-500-x03-z00",
+      "coord": {
+        "x": 3,
+        "z": 0
+      },
+      "empty": false,
+      "nonAir": 823658,
+      "conflicts": 0,
+      "pasteOrigin": [
+        -297,
+        -2,
+        -1638
+      ],
+      "size": [
+        500,
+        141,
+        500
+      ],
+      "gridBox": {
+        "min": [
+          -297,
+          -2,
+          -1638
+        ],
+        "max": [
+          202,
+          138,
+          -1139
+        ]
+      },
+      "schem": "campus-500-x03-z00.schem",
+      "litematic": "campus-500-x03-z00.litematic",
+      "bytes": 111144
+    },
+    {
+      "name": "campus-500-x04-z00",
+      "coord": {
+        "x": 4,
+        "z": 0
+      },
+      "empty": false,
+      "nonAir": 1228340,
+      "conflicts": 0,
+      "pasteOrigin": [
+        203,
+        -2,
+        -1638
+      ],
+      "size": [
+        500,
+        141,
+        500
+      ],
+      "gridBox": {
+        "min": [
+          203,
+          -2,
+          -1638
+        ],
+        "max": [
+          702,
+          138,
+          -1139
+        ]
+      },
+      "schem": "campus-500-x04-z00.schem",
+      "litematic": "campus-500-x04-z00.litematic",
+      "bytes": 257902
+    },
+    {
+      "name": "campus-500-x05-z00",
+      "coord": {
+        "x": 5,
+        "z": 0
+      },
+      "empty": false,
+      "nonAir": 170080,
+      "conflicts": 0,
+      "pasteOrigin": [
+        703,
+        -2,
+        -1638
+      ],
+      "size": [
+        500,
+        79,
+        500
+      ],
+      "gridBox": {
+        "min": [
+          703,
+          -2,
+          -1638
+        ],
+        "max": [
+          1202,
+          76,
+          -1139
+        ]
+      },
+      "schem": "campus-500-x05-z00.schem",
+      "litematic": "campus-500-x05-z00.litematic",
+      "bytes": 63659
+    },
+    {
+      "name": "campus-500-x06-z00",
+      "coord": {
+        "x": 6,
+        "z": 0
+      },
+      "empty": true,
+      "nonAir": 0,
+      "conflicts": 0,
+      "pasteOrigin": [
+        1203,
+        -3,
+        -1638
+      ],
+      "size": [
+        500,
+        1,
+        500
+      ],
+      "gridBox": {
+        "min": [
+          1203,
+          -3,
+          -1638
+        ],
+        "max": [
+          1702,
+          -3,
+          -1139
+        ]
+      },
+      "schem": "campus-500-x06-z00.schem",
+      "litematic": "campus-500-x06-z00.litematic",
+      "bytes": 401
+    },
+    {
+      "name": "campus-500-x07-z00",
+      "coord": {
+        "x": 7,
+        "z": 0
+      },
+      "empty": true,
+      "nonAir": 0,
+      "conflicts": 0,
+      "pasteOrigin": [
+        1703,
+        -3,
+        -1638
+      ],
+      "size": [
+        500,
+        1,
+        500
+      ],
+      "gridBox": {
+        "min": [
+          1703,
+          -3,
+          -1638
+        ],
+        "max": [
+          2202,
+          -3,
+          -1139
+        ]
+      },
+      "schem": "campus-500-x07-z00.schem",
+      "litematic": "campus-500-x07-z00.litematic",
+      "bytes": 401
+    },
+    {
+      "name": "campus-500-x08-z00",
+      "coord": {
+        "x": 8,
+        "z": 0
+      },
+      "empty": true,
+      "nonAir": 0,
+      "conflicts": 0,
+      "pasteOrigin": [
+        2203,
+        -3,
+        -1638
+      ],
+      "size": [
+        500,
+        1,
+        500
+      ],
+      "gridBox": {
+        "min": [
+          2203,
+          -3,
+          -1638
+        ],
+        "max": [
+          2702,
+          -3,
+          -1139
+        ]
+      },
+      "schem": "campus-500-x08-z00.schem",
+      "litematic": "campus-500-x08-z00.litematic",
+      "bytes": 401
+    },
+    {
+      "name": "campus-500-x00-z01",
+      "coord": {
+        "x": 0,
+        "z": 1
+      },
+      "empty": false,
+      "nonAir": 1567441,
+      "conflicts": 0,
+      "pasteOrigin": [
+        -1797,
+        -2,
+        -1138
+      ],
+      "size": [
+        500,
+        99,
+        500
+      ],
+      "gridBox": {
+        "min": [
+          -1797,
+          -2,
+          -1138
+        ],
+        "max": [
+          -1298,
+          96,
+          -639
+        ]
+      },
+      "schem": "campus-500-x00-z01.schem",
+      "litematic": "campus-500-x00-z01.litematic",
+      "bytes": 212885
+    },
+    {
+      "name": "campus-500-x01-z01",
+      "coord": {
+        "x": 1,
+        "z": 1
+      },
+      "empty": false,
+      "nonAir": 2273947,
+      "conflicts": 0,
+      "pasteOrigin": [
+        -1297,
+        -2,
+        -1138
+      ],
+      "size": [
+        500,
+        99,
+        500
+      ],
+      "gridBox": {
+        "min": [
+          -1297,
+          -2,
+          -1138
+        ],
+        "max": [
+          -798,
+          96,
+          -639
+        ]
+      },
+      "schem": "campus-500-x01-z01.schem",
+      "litematic": "campus-500-x01-z01.litematic",
+      "bytes": 253004
+    },
+    {
+      "name": "campus-500-x02-z01",
+      "coord": {
+        "x": 2,
+        "z": 1
+      },
+      "empty": false,
+      "nonAir": 1068641,
+      "conflicts": 0,
+      "pasteOrigin": [
+        -797,
+        -2,
+        -1138
+      ],
+      "size": [
+        500,
+        94,
+        500
+      ],
+      "gridBox": {
+        "min": [
+          -797,
+          -2,
+          -1138
+        ],
+        "max": [
+          -298,
+          91,
+          -639
+        ]
+      },
+      "schem": "campus-500-x02-z01.schem",
+      "litematic": "campus-500-x02-z01.litematic",
+      "bytes": 162360
+    },
+    {
+      "name": "campus-500-x03-z01",
+      "coord": {
+        "x": 3,
+        "z": 1
+      },
+      "empty": false,
+      "nonAir": 893483,
+      "conflicts": 0,
+      "pasteOrigin": [
+        -297,
+        -2,
+        -1138
+      ],
+      "size": [
+        500,
+        94,
+        500
+      ],
+      "gridBox": {
+        "min": [
+          -297,
+          -2,
+          -1138
+        ],
+        "max": [
+          202,
+          91,
+          -639
+        ]
+      },
+      "schem": "campus-500-x03-z01.schem",
+      "litematic": "campus-500-x03-z01.litematic",
+      "bytes": 122329
+    },
+    {
+      "name": "campus-500-x04-z01",
+      "coord": {
+        "x": 4,
+        "z": 1
+      },
+      "empty": false,
+      "nonAir": 1513095,
+      "conflicts": 0,
+      "pasteOrigin": [
+        203,
+        -2,
+        -1138
+      ],
+      "size": [
+        500,
+        128,
+        500
+      ],
+      "gridBox": {
+        "min": [
+          203,
+          -2,
+          -1138
+        ],
+        "max": [
+          702,
+          125,
+          -639
+        ]
+      },
+      "schem": "campus-500-x04-z01.schem",
+      "litematic": "campus-500-x04-z01.litematic",
+      "bytes": 270560
+    },
+    {
+      "name": "campus-500-x05-z01",
+      "coord": {
+        "x": 5,
+        "z": 1
+      },
+      "empty": false,
+      "nonAir": 1766002,
+      "conflicts": 0,
+      "pasteOrigin": [
+        703,
+        -2,
+        -1138
+      ],
+      "size": [
+        500,
+        94,
+        500
+      ],
+      "gridBox": {
+        "min": [
+          703,
+          -2,
+          -1138
+        ],
+        "max": [
+          1202,
+          91,
+          -639
+        ]
+      },
+      "schem": "campus-500-x05-z01.schem",
+      "litematic": "campus-500-x05-z01.litematic",
+      "bytes": 198779
+    },
+    {
+      "name": "campus-500-x06-z01",
+      "coord": {
+        "x": 6,
+        "z": 1
+      },
+      "empty": false,
+      "nonAir": 130041,
+      "conflicts": 0,
+      "pasteOrigin": [
+        1203,
+        -2,
+        -1138
+      ],
+      "size": [
+        500,
+        46,
+        500
+      ],
+      "gridBox": {
+        "min": [
+          1203,
+          -2,
+          -1138
+        ],
+        "max": [
+          1702,
+          43,
+          -639
+        ]
+      },
+      "schem": "campus-500-x06-z01.schem",
+      "litematic": "campus-500-x06-z01.litematic",
+      "bytes": 23883
+    },
+    {
+      "name": "campus-500-x07-z01",
+      "coord": {
+        "x": 7,
+        "z": 1
+      },
+      "empty": true,
+      "nonAir": 0,
+      "conflicts": 0,
+      "pasteOrigin": [
+        1703,
+        -3,
+        -1138
+      ],
+      "size": [
+        500,
+        1,
+        500
+      ],
+      "gridBox": {
+        "min": [
+          1703,
+          -3,
+          -1138
+        ],
+        "max": [
+          2202,
+          -3,
+          -639
+        ]
+      },
+      "schem": "campus-500-x07-z01.schem",
+      "litematic": "campus-500-x07-z01.litematic",
+      "bytes": 401
+    },
+    {
+      "name": "campus-500-x08-z01",
+      "coord": {
+        "x": 8,
+        "z": 1
+      },
+      "empty": true,
+      "nonAir": 0,
+      "conflicts": 0,
+      "pasteOrigin": [
+        2203,
+        -3,
+        -1138
+      ],
+      "size": [
+        500,
+        1,
+        500
+      ],
+      "gridBox": {
+        "min": [
+          2203,
+          -3,
+          -1138
+        ],
+        "max": [
+          2702,
+          -3,
+          -639
+        ]
+      },
+      "schem": "campus-500-x08-z01.schem",
+      "litematic": "campus-500-x08-z01.litematic",
+      "bytes": 401
+    },
+    {
+      "name": "campus-500-x00-z02",
+      "coord": {
+        "x": 0,
+        "z": 2
+      },
+      "empty": false,
+      "nonAir": 278330,
+      "conflicts": 0,
+      "pasteOrigin": [
+        -1797,
+        -2,
+        -638
+      ],
+      "size": [
+        500,
+        62,
+        500
+      ],
+      "gridBox": {
+        "min": [
+          -1797,
+          -2,
+          -638
+        ],
+        "max": [
+          -1298,
+          59,
+          -139
+        ]
+      },
+      "schem": "campus-500-x00-z02.schem",
+      "litematic": "campus-500-x00-z02.litematic",
+      "bytes": 62469
+    },
+    {
+      "name": "campus-500-x01-z02",
+      "coord": {
+        "x": 1,
+        "z": 2
+      },
+      "empty": false,
+      "nonAir": 378661,
+      "conflicts": 0,
+      "pasteOrigin": [
+        -1297,
+        -2,
+        -638
+      ],
+      "size": [
+        500,
+        62,
+        500
+      ],
+      "gridBox": {
+        "min": [
+          -1297,
+          -2,
+          -638
+        ],
+        "max": [
+          -798,
+          59,
+          -139
+        ]
+      },
+      "schem": "campus-500-x01-z02.schem",
+      "litematic": "campus-500-x01-z02.litematic",
+      "bytes": 77439
+    },
+    {
+      "name": "campus-500-x02-z02",
+      "coord": {
+        "x": 2,
+        "z": 2
+      },
+      "empty": false,
+      "nonAir": 619738,
+      "conflicts": 0,
+      "pasteOrigin": [
+        -797,
+        -2,
+        -638
+      ],
+      "size": [
+        500,
+        73,
+        500
+      ],
+      "gridBox": {
+        "min": [
+          -797,
+          -2,
+          -638
+        ],
+        "max": [
+          -298,
+          70,
+          -139
+        ]
+      },
+      "schem": "campus-500-x02-z02.schem",
+      "litematic": "campus-500-x02-z02.litematic",
+      "bytes": 58294
+    },
+    {
+      "name": "campus-500-x03-z02",
+      "coord": {
+        "x": 3,
+        "z": 2
+      },
+      "empty": false,
+      "nonAir": 382812,
+      "conflicts": 0,
+      "pasteOrigin": [
+        -297,
+        -2,
+        -638
+      ],
+      "size": [
+        500,
+        95,
+        500
+      ],
+      "gridBox": {
+        "min": [
+          -297,
+          -2,
+          -638
+        ],
+        "max": [
+          202,
+          92,
+          -139
+        ]
+      },
+      "schem": "campus-500-x03-z02.schem",
+      "litematic": "campus-500-x03-z02.litematic",
+      "bytes": 73012
+    },
+    {
+      "name": "campus-500-x04-z02",
+      "coord": {
+        "x": 4,
+        "z": 2
+      },
+      "empty": false,
+      "nonAir": 883896,
+      "conflicts": 0,
+      "pasteOrigin": [
+        203,
+        -2,
+        -638
+      ],
+      "size": [
+        500,
+        94,
+        500
+      ],
+      "gridBox": {
+        "min": [
+          203,
+          -2,
+          -638
+        ],
+        "max": [
+          702,
+          91,
+          -139
+        ]
+      },
+      "schem": "campus-500-x04-z02.schem",
+      "litematic": "campus-500-x04-z02.litematic",
+      "bytes": 176827
+    },
+    {
+      "name": "campus-500-x05-z02",
+      "coord": {
+        "x": 5,
+        "z": 2
+      },
+      "empty": false,
+      "nonAir": 1185787,
+      "conflicts": 0,
+      "pasteOrigin": [
+        703,
+        -2,
+        -638
+      ],
+      "size": [
+        500,
+        105,
+        500
+      ],
+      "gridBox": {
+        "min": [
+          703,
+          -2,
+          -638
+        ],
+        "max": [
+          1202,
+          102,
+          -139
+        ]
+      },
+      "schem": "campus-500-x05-z02.schem",
+      "litematic": "campus-500-x05-z02.litematic",
+      "bytes": 229557
+    },
+    {
+      "name": "campus-500-x06-z02",
+      "coord": {
+        "x": 6,
+        "z": 2
+      },
+      "empty": false,
+      "nonAir": 933495,
+      "conflicts": 0,
+      "pasteOrigin": [
+        1203,
+        -2,
+        -638
+      ],
+      "size": [
+        500,
+        99,
+        500
+      ],
+      "gridBox": {
+        "min": [
+          1203,
+          -2,
+          -638
+        ],
+        "max": [
+          1702,
+          96,
+          -139
+        ]
+      },
+      "schem": "campus-500-x06-z02.schem",
+      "litematic": "campus-500-x06-z02.litematic",
+      "bytes": 132476
+    },
+    {
+      "name": "campus-500-x07-z02",
+      "coord": {
+        "x": 7,
+        "z": 2
+      },
+      "empty": false,
+      "nonAir": 72424,
+      "conflicts": 0,
+      "pasteOrigin": [
+        1703,
+        1,
+        -638
+      ],
+      "size": [
+        500,
+        2,
+        500
+      ],
+      "gridBox": {
+        "min": [
+          1703,
+          1,
+          -638
+        ],
+        "max": [
+          2202,
+          2,
+          -139
+        ]
+      },
+      "schem": "campus-500-x07-z02.schem",
+      "litematic": "campus-500-x07-z02.litematic",
+      "bytes": 3843
+    },
+    {
+      "name": "campus-500-x08-z02",
+      "coord": {
+        "x": 8,
+        "z": 2
+      },
+      "empty": true,
+      "nonAir": 0,
+      "conflicts": 0,
+      "pasteOrigin": [
+        2203,
+        -3,
+        -638
+      ],
+      "size": [
+        500,
+        1,
+        500
+      ],
+      "gridBox": {
+        "min": [
+          2203,
+          -3,
+          -638
+        ],
+        "max": [
+          2702,
+          -3,
+          -139
+        ]
+      },
+      "schem": "campus-500-x08-z02.schem",
+      "litematic": "campus-500-x08-z02.litematic",
+      "bytes": 401
+    },
+    {
+      "name": "campus-500-x00-z03",
+      "coord": {
+        "x": 0,
+        "z": 3
+      },
+      "empty": false,
+      "nonAir": 66552,
+      "conflicts": 0,
+      "pasteOrigin": [
+        -1797,
+        -2,
+        -138
+      ],
+      "size": [
+        500,
+        46,
+        500
+      ],
+      "gridBox": {
+        "min": [
+          -1797,
+          -2,
+          -138
+        ],
+        "max": [
+          -1298,
+          43,
+          361
+        ]
+      },
+      "schem": "campus-500-x00-z03.schem",
+      "litematic": "campus-500-x00-z03.litematic",
+      "bytes": 29342
+    },
+    {
+      "name": "campus-500-x01-z03",
+      "coord": {
+        "x": 1,
+        "z": 3
+      },
+      "empty": false,
+      "nonAir": 465674,
+      "conflicts": 0,
+      "pasteOrigin": [
+        -1297,
+        -2,
+        -138
+      ],
+      "size": [
+        500,
+        47,
+        500
+      ],
+      "gridBox": {
+        "min": [
+          -1297,
+          -2,
+          -138
+        ],
+        "max": [
+          -798,
+          44,
+          361
+        ]
+      },
+      "schem": "campus-500-x01-z03.schem",
+      "litematic": "campus-500-x01-z03.litematic",
+      "bytes": 169138
+    },
+    {
+      "name": "campus-500-x02-z03",
+      "coord": {
+        "x": 2,
+        "z": 3
+      },
+      "empty": false,
+      "nonAir": 595374,
+      "conflicts": 1,
+      "pasteOrigin": [
+        -797,
+        -3,
+        -138
+      ],
+      "size": [
+        500,
+        48,
+        500
+      ],
+      "gridBox": {
+        "min": [
+          -797,
+          -3,
+          -138
+        ],
+        "max": [
+          -298,
+          44,
+          361
+        ]
+      },
+      "schem": "campus-500-x02-z03.schem",
+      "litematic": "campus-500-x02-z03.litematic",
+      "bytes": 235561
+    },
+    {
+      "name": "campus-500-x03-z03",
+      "coord": {
+        "x": 3,
+        "z": 3
+      },
+      "empty": false,
+      "nonAir": 394452,
+      "conflicts": 287,
+      "pasteOrigin": [
+        -297,
+        -2,
+        -138
+      ],
+      "size": [
+        500,
+        95,
+        500
+      ],
+      "gridBox": {
+        "min": [
+          -297,
+          -2,
+          -138
+        ],
+        "max": [
+          202,
+          92,
+          361
+        ]
+      },
+      "schem": "campus-500-x03-z03.schem",
+      "litematic": "campus-500-x03-z03.litematic",
+      "bytes": 157891
+    },
+    {
+      "name": "campus-500-x04-z03",
+      "coord": {
+        "x": 4,
+        "z": 3
+      },
+      "empty": false,
+      "nonAir": 419446,
+      "conflicts": 11,
+      "pasteOrigin": [
+        203,
+        -2,
+        -138
+      ],
+      "size": [
+        500,
+        67,
+        500
+      ],
+      "gridBox": {
+        "min": [
+          203,
+          -2,
+          -138
+        ],
+        "max": [
+          702,
+          64,
+          361
+        ]
+      },
+      "schem": "campus-500-x04-z03.schem",
+      "litematic": "campus-500-x04-z03.litematic",
+      "bytes": 163623
+    },
+    {
+      "name": "campus-500-x05-z03",
+      "coord": {
+        "x": 5,
+        "z": 3
+      },
+      "empty": false,
+      "nonAir": 1065497,
+      "conflicts": 145,
+      "pasteOrigin": [
+        703,
+        -3,
+        -138
+      ],
+      "size": [
+        500,
+        121,
+        500
+      ],
+      "gridBox": {
+        "min": [
+          703,
+          -3,
+          -138
+        ],
+        "max": [
+          1202,
+          117,
+          361
+        ]
+      },
+      "schem": "campus-500-x05-z03.schem",
+      "litematic": "campus-500-x05-z03.litematic",
+      "bytes": 201825
+    },
+    {
+      "name": "campus-500-x06-z03",
+      "coord": {
+        "x": 6,
+        "z": 3
+      },
+      "empty": false,
+      "nonAir": 1292929,
+      "conflicts": 0,
+      "pasteOrigin": [
+        1203,
+        -3,
+        -138
+      ],
+      "size": [
+        500,
+        96,
+        500
+      ],
+      "gridBox": {
+        "min": [
+          1203,
+          -3,
+          -138
+        ],
+        "max": [
+          1702,
+          92,
+          361
+        ]
+      },
+      "schem": "campus-500-x06-z03.schem",
+      "litematic": "campus-500-x06-z03.litematic",
+      "bytes": 260820
+    },
+    {
+      "name": "campus-500-x07-z03",
+      "coord": {
+        "x": 7,
+        "z": 3
+      },
+      "empty": false,
+      "nonAir": 843866,
+      "conflicts": 0,
+      "pasteOrigin": [
+        1703,
+        -3,
+        -138
+      ],
+      "size": [
+        500,
+        100,
+        500
+      ],
+      "gridBox": {
+        "min": [
+          1703,
+          -3,
+          -138
+        ],
+        "max": [
+          2202,
+          96,
+          361
+        ]
+      },
+      "schem": "campus-500-x07-z03.schem",
+      "litematic": "campus-500-x07-z03.litematic",
+      "bytes": 147193
+    },
+    {
+      "name": "campus-500-x08-z03",
+      "coord": {
+        "x": 8,
+        "z": 3
+      },
+      "empty": false,
+      "nonAir": 67866,
+      "conflicts": 0,
+      "pasteOrigin": [
+        2203,
+        -3,
+        -138
+      ],
+      "size": [
+        500,
+        5,
+        500
+      ],
+      "gridBox": {
+        "min": [
+          2203,
+          -3,
+          -138
+        ],
+        "max": [
+          2702,
+          1,
+          361
+        ]
+      },
+      "schem": "campus-500-x08-z03.schem",
+      "litematic": "campus-500-x08-z03.litematic",
+      "bytes": 4485
+    },
+    {
+      "name": "campus-500-x00-z04",
+      "coord": {
+        "x": 0,
+        "z": 4
+      },
+      "empty": false,
+      "nonAir": 1647,
+      "conflicts": 0,
+      "pasteOrigin": [
+        -1797,
+        1,
+        362
+      ],
+      "size": [
+        500,
+        1,
+        500
+      ],
+      "gridBox": {
+        "min": [
+          -1797,
+          1,
+          362
+        ],
+        "max": [
+          -1298,
+          1,
+          861
+        ]
+      },
+      "schem": "campus-500-x00-z04.schem",
+      "litematic": "campus-500-x00-z04.litematic",
+      "bytes": 487
+    },
+    {
+      "name": "campus-500-x01-z04",
+      "coord": {
+        "x": 1,
+        "z": 4
+      },
+      "empty": false,
+      "nonAir": 36640,
+      "conflicts": 0,
+      "pasteOrigin": [
+        -1297,
+        1,
+        362
+      ],
+      "size": [
+        500,
+        15,
+        500
+      ],
+      "gridBox": {
+        "min": [
+          -1297,
+          1,
+          362
+        ],
+        "max": [
+          -798,
+          15,
+          861
+        ]
+      },
+      "schem": "campus-500-x01-z04.schem",
+      "litematic": "campus-500-x01-z04.litematic",
+      "bytes": 5796
+    },
+    {
+      "name": "campus-500-x02-z04",
+      "coord": {
+        "x": 2,
+        "z": 4
+      },
+      "empty": false,
+      "nonAir": 391511,
+      "conflicts": 0,
+      "pasteOrigin": [
+        -797,
+        -3,
+        362
+      ],
+      "size": [
+        500,
+        47,
+        500
+      ],
+      "gridBox": {
+        "min": [
+          -797,
+          -3,
+          362
+        ],
+        "max": [
+          -298,
+          43,
+          861
+        ]
+      },
+      "schem": "campus-500-x02-z04.schem",
+      "litematic": "campus-500-x02-z04.litematic",
+      "bytes": 207719
+    },
+    {
+      "name": "campus-500-x03-z04",
+      "coord": {
+        "x": 3,
+        "z": 4
+      },
+      "empty": false,
+      "nonAir": 767229,
+      "conflicts": 0,
+      "pasteOrigin": [
+        -297,
+        -3,
+        362
+      ],
+      "size": [
+        500,
+        63,
+        500
+      ],
+      "gridBox": {
+        "min": [
+          -297,
+          -3,
+          362
+        ],
+        "max": [
+          202,
+          59,
+          861
+        ]
+      },
+      "schem": "campus-500-x03-z04.schem",
+      "litematic": "campus-500-x03-z04.litematic",
+      "bytes": 432272
+    },
+    {
+      "name": "campus-500-x04-z04",
+      "coord": {
+        "x": 4,
+        "z": 4
+      },
+      "empty": false,
+      "nonAir": 747418,
+      "conflicts": 0,
+      "pasteOrigin": [
+        203,
+        -3,
+        362
+      ],
+      "size": [
+        500,
+        106,
+        500
+      ],
+      "gridBox": {
+        "min": [
+          203,
+          -3,
+          362
+        ],
+        "max": [
+          702,
+          102,
+          861
+        ]
+      },
+      "schem": "campus-500-x04-z04.schem",
+      "litematic": "campus-500-x04-z04.litematic",
+      "bytes": 250170
+    },
+    {
+      "name": "campus-500-x05-z04",
+      "coord": {
+        "x": 5,
+        "z": 4
+      },
+      "empty": false,
+      "nonAir": 781336,
+      "conflicts": 0,
+      "pasteOrigin": [
+        703,
+        -3,
+        362
+      ],
+      "size": [
+        500,
+        106,
+        500
+      ],
+      "gridBox": {
+        "min": [
+          703,
+          -3,
+          362
+        ],
+        "max": [
+          1202,
+          102,
+          861
+        ]
+      },
+      "schem": "campus-500-x05-z04.schem",
+      "litematic": "campus-500-x05-z04.litematic",
+      "bytes": 262959
+    },
+    {
+      "name": "campus-500-x06-z04",
+      "coord": {
+        "x": 6,
+        "z": 4
+      },
+      "empty": false,
+      "nonAir": 1849667,
+      "conflicts": 0,
+      "pasteOrigin": [
+        1203,
+        -3,
+        362
+      ],
+      "size": [
+        500,
+        106,
+        500
+      ],
+      "gridBox": {
+        "min": [
+          1203,
+          -3,
+          362
+        ],
+        "max": [
+          1702,
+          102,
+          861
+        ]
+      },
+      "schem": "campus-500-x06-z04.schem",
+      "litematic": "campus-500-x06-z04.litematic",
+      "bytes": 219825
+    },
+    {
+      "name": "campus-500-x07-z04",
+      "coord": {
+        "x": 7,
+        "z": 4
+      },
+      "empty": false,
+      "nonAir": 1317177,
+      "conflicts": 0,
+      "pasteOrigin": [
+        1703,
+        -3,
+        362
+      ],
+      "size": [
+        500,
+        92,
+        500
+      ],
+      "gridBox": {
+        "min": [
+          1703,
+          -3,
+          362
+        ],
+        "max": [
+          2202,
+          88,
+          861
+        ]
+      },
+      "schem": "campus-500-x07-z04.schem",
+      "litematic": "campus-500-x07-z04.litematic",
+      "bytes": 180576
+    },
+    {
+      "name": "campus-500-x08-z04",
+      "coord": {
+        "x": 8,
+        "z": 4
+      },
+      "empty": false,
+      "nonAir": 241962,
+      "conflicts": 0,
+      "pasteOrigin": [
+        2203,
+        -3,
+        362
+      ],
+      "size": [
+        500,
+        47,
+        500
+      ],
+      "gridBox": {
+        "min": [
+          2203,
+          -3,
+          362
+        ],
+        "max": [
+          2702,
+          43,
+          861
+        ]
+      },
+      "schem": "campus-500-x08-z04.schem",
+      "litematic": "campus-500-x08-z04.litematic",
+      "bytes": 26006
+    },
+    {
+      "name": "campus-500-x00-z05",
+      "coord": {
+        "x": 0,
+        "z": 5
+      },
+      "empty": true,
+      "nonAir": 0,
+      "conflicts": 0,
+      "pasteOrigin": [
+        -1797,
+        -3,
+        862
+      ],
+      "size": [
+        500,
+        1,
+        500
+      ],
+      "gridBox": {
+        "min": [
+          -1797,
+          -3,
+          862
+        ],
+        "max": [
+          -1298,
+          -3,
+          1361
+        ]
+      },
+      "schem": "campus-500-x00-z05.schem",
+      "litematic": "campus-500-x00-z05.litematic",
+      "bytes": 401
+    },
+    {
+      "name": "campus-500-x01-z05",
+      "coord": {
+        "x": 1,
+        "z": 5
+      },
+      "empty": true,
+      "nonAir": 0,
+      "conflicts": 0,
+      "pasteOrigin": [
+        -1297,
+        -3,
+        862
+      ],
+      "size": [
+        500,
+        1,
+        500
+      ],
+      "gridBox": {
+        "min": [
+          -1297,
+          -3,
+          862
+        ],
+        "max": [
+          -798,
+          -3,
+          1361
+        ]
+      },
+      "schem": "campus-500-x01-z05.schem",
+      "litematic": "campus-500-x01-z05.litematic",
+      "bytes": 401
+    },
+    {
+      "name": "campus-500-x02-z05",
+      "coord": {
+        "x": 2,
+        "z": 5
+      },
+      "empty": false,
+      "nonAir": 96189,
+      "conflicts": 0,
+      "pasteOrigin": [
+        -797,
+        -3,
+        862
+      ],
+      "size": [
+        500,
+        48,
+        500
+      ],
+      "gridBox": {
+        "min": [
+          -797,
+          -3,
+          862
+        ],
+        "max": [
+          -298,
+          44,
+          1361
+        ]
+      },
+      "schem": "campus-500-x02-z05.schem",
+      "litematic": "campus-500-x02-z05.litematic",
+      "bytes": 33116
+    },
+    {
+      "name": "campus-500-x03-z05",
+      "coord": {
+        "x": 3,
+        "z": 5
+      },
+      "empty": false,
+      "nonAir": 770247,
+      "conflicts": 0,
+      "pasteOrigin": [
+        -297,
+        -3,
+        862
+      ],
+      "size": [
+        500,
+        63,
+        500
+      ],
+      "gridBox": {
+        "min": [
+          -297,
+          -3,
+          862
+        ],
+        "max": [
+          202,
+          59,
+          1361
+        ]
+      },
+      "schem": "campus-500-x03-z05.schem",
+      "litematic": "campus-500-x03-z05.litematic",
+      "bytes": 396429
+    },
+    {
+      "name": "campus-500-x04-z05",
+      "coord": {
+        "x": 4,
+        "z": 5
+      },
+      "empty": false,
+      "nonAir": 814441,
+      "conflicts": 0,
+      "pasteOrigin": [
+        203,
+        -3,
+        862
+      ],
+      "size": [
+        500,
+        107,
+        500
+      ],
+      "gridBox": {
+        "min": [
+          203,
+          -3,
+          862
+        ],
+        "max": [
+          702,
+          103,
+          1361
+        ]
+      },
+      "schem": "campus-500-x04-z05.schem",
+      "litematic": "campus-500-x04-z05.litematic",
+      "bytes": 312676
+    },
+    {
+      "name": "campus-500-x05-z05",
+      "coord": {
+        "x": 5,
+        "z": 5
+      },
+      "empty": false,
+      "nonAir": 1020749,
+      "conflicts": 0,
+      "pasteOrigin": [
+        703,
+        -3,
+        862
+      ],
+      "size": [
+        500,
+        107,
+        500
+      ],
+      "gridBox": {
+        "min": [
+          703,
+          -3,
+          862
+        ],
+        "max": [
+          1202,
+          103,
+          1361
+        ]
+      },
+      "schem": "campus-500-x05-z05.schem",
+      "litematic": "campus-500-x05-z05.litematic",
+      "bytes": 156719
+    },
+    {
+      "name": "campus-500-x06-z05",
+      "coord": {
+        "x": 6,
+        "z": 5
+      },
+      "empty": false,
+      "nonAir": 744174,
+      "conflicts": 0,
+      "pasteOrigin": [
+        1203,
+        -3,
+        862
+      ],
+      "size": [
+        500,
+        107,
+        500
+      ],
+      "gridBox": {
+        "min": [
+          1203,
+          -3,
+          862
+        ],
+        "max": [
+          1702,
+          103,
+          1361
+        ]
+      },
+      "schem": "campus-500-x06-z05.schem",
+      "litematic": "campus-500-x06-z05.litematic",
+      "bytes": 246611
+    },
+    {
+      "name": "campus-500-x07-z05",
+      "coord": {
+        "x": 7,
+        "z": 5
+      },
+      "empty": false,
+      "nonAir": 258959,
+      "conflicts": 0,
+      "pasteOrigin": [
+        1703,
+        -3,
+        862
+      ],
+      "size": [
+        500,
+        88,
+        500
+      ],
+      "gridBox": {
+        "min": [
+          1703,
+          -3,
+          862
+        ],
+        "max": [
+          2202,
+          84,
+          1361
+        ]
+      },
+      "schem": "campus-500-x07-z05.schem",
+      "litematic": "campus-500-x07-z05.litematic",
+      "bytes": 47350
+    },
+    {
+      "name": "campus-500-x08-z05",
+      "coord": {
+        "x": 8,
+        "z": 5
+      },
+      "empty": false,
+      "nonAir": 26598,
+      "conflicts": 0,
+      "pasteOrigin": [
+        2203,
+        -3,
+        862
+      ],
+      "size": [
+        500,
+        5,
+        500
+      ],
+      "gridBox": {
+        "min": [
+          2203,
+          -3,
+          862
+        ],
+        "max": [
+          2702,
+          1,
+          1361
+        ]
+      },
+      "schem": "campus-500-x08-z05.schem",
+      "litematic": "campus-500-x08-z05.litematic",
+      "bytes": 2631
+    },
+    {
+      "name": "campus-500-x00-z06",
+      "coord": {
+        "x": 0,
+        "z": 6
+      },
+      "empty": true,
+      "nonAir": 0,
+      "conflicts": 0,
+      "pasteOrigin": [
+        -1797,
+        -3,
+        1362
+      ],
+      "size": [
+        500,
+        1,
+        500
+      ],
+      "gridBox": {
+        "min": [
+          -1797,
+          -3,
+          1362
+        ],
+        "max": [
+          -1298,
+          -3,
+          1861
+        ]
+      },
+      "schem": "campus-500-x00-z06.schem",
+      "litematic": "campus-500-x00-z06.litematic",
+      "bytes": 401
+    },
+    {
+      "name": "campus-500-x01-z06",
+      "coord": {
+        "x": 1,
+        "z": 6
+      },
+      "empty": true,
+      "nonAir": 0,
+      "conflicts": 0,
+      "pasteOrigin": [
+        -1297,
+        -3,
+        1362
+      ],
+      "size": [
+        500,
+        1,
+        500
+      ],
+      "gridBox": {
+        "min": [
+          -1297,
+          -3,
+          1362
+        ],
+        "max": [
+          -798,
+          -3,
+          1861
+        ]
+      },
+      "schem": "campus-500-x01-z06.schem",
+      "litematic": "campus-500-x01-z06.litematic",
+      "bytes": 401
+    },
+    {
+      "name": "campus-500-x02-z06",
+      "coord": {
+        "x": 2,
+        "z": 6
+      },
+      "empty": false,
+      "nonAir": 394,
+      "conflicts": 0,
+      "pasteOrigin": [
+        -797,
+        -3,
+        1362
+      ],
+      "size": [
+        500,
+        4,
+        500
+      ],
+      "gridBox": {
+        "min": [
+          -797,
+          -3,
+          1362
+        ],
+        "max": [
+          -298,
+          0,
+          1861
+        ]
+      },
+      "schem": "campus-500-x02-z06.schem",
+      "litematic": "campus-500-x02-z06.litematic",
+      "bytes": 1315
+    },
+    {
+      "name": "campus-500-x03-z06",
+      "coord": {
+        "x": 3,
+        "z": 6
+      },
+      "empty": false,
+      "nonAir": 92206,
+      "conflicts": 0,
+      "pasteOrigin": [
+        -297,
+        -3,
+        1362
+      ],
+      "size": [
+        500,
+        44,
+        500
+      ],
+      "gridBox": {
+        "min": [
+          -297,
+          -3,
+          1362
+        ],
+        "max": [
+          202,
+          40,
+          1861
+        ]
+      },
+      "schem": "campus-500-x03-z06.schem",
+      "litematic": "campus-500-x03-z06.litematic",
+      "bytes": 18537
+    },
+    {
+      "name": "campus-500-x04-z06",
+      "coord": {
+        "x": 4,
+        "z": 6
+      },
+      "empty": false,
+      "nonAir": 94801,
+      "conflicts": 0,
+      "pasteOrigin": [
+        203,
+        -3,
+        1362
+      ],
+      "size": [
+        500,
+        43,
+        500
+      ],
+      "gridBox": {
+        "min": [
+          203,
+          -3,
+          1362
+        ],
+        "max": [
+          702,
+          39,
+          1861
+        ]
+      },
+      "schem": "campus-500-x04-z06.schem",
+      "litematic": "campus-500-x04-z06.litematic",
+      "bytes": 16280
+    },
+    {
+      "name": "campus-500-x05-z06",
+      "coord": {
+        "x": 5,
+        "z": 6
+      },
+      "empty": false,
+      "nonAir": 89267,
+      "conflicts": 0,
+      "pasteOrigin": [
+        703,
+        -3,
+        1362
+      ],
+      "size": [
+        500,
+        47,
+        500
+      ],
+      "gridBox": {
+        "min": [
+          703,
+          -3,
+          1362
+        ],
+        "max": [
+          1202,
+          43,
+          1861
+        ]
+      },
+      "schem": "campus-500-x05-z06.schem",
+      "litematic": "campus-500-x05-z06.litematic",
+      "bytes": 16393
+    },
+    {
+      "name": "campus-500-x06-z06",
+      "coord": {
+        "x": 6,
+        "z": 6
+      },
+      "empty": false,
+      "nonAir": 8499,
+      "conflicts": 0,
+      "pasteOrigin": [
+        1203,
+        -3,
+        1362
+      ],
+      "size": [
+        500,
+        5,
+        500
+      ],
+      "gridBox": {
+        "min": [
+          1203,
+          -3,
+          1362
+        ],
+        "max": [
+          1702,
+          1,
+          1861
+        ]
+      },
+      "schem": "campus-500-x06-z06.schem",
+      "litematic": "campus-500-x06-z06.litematic",
+      "bytes": 1792
+    },
+    {
+      "name": "campus-500-x07-z06",
+      "coord": {
+        "x": 7,
+        "z": 6
+      },
+      "empty": true,
+      "nonAir": 0,
+      "conflicts": 0,
+      "pasteOrigin": [
+        1703,
+        -3,
+        1362
+      ],
+      "size": [
+        500,
+        1,
+        500
+      ],
+      "gridBox": {
+        "min": [
+          1703,
+          -3,
+          1362
+        ],
+        "max": [
+          2202,
+          -3,
+          1861
+        ]
+      },
+      "schem": "campus-500-x07-z06.schem",
+      "litematic": "campus-500-x07-z06.litematic",
+      "bytes": 401
+    },
+    {
+      "name": "campus-500-x08-z06",
+      "coord": {
+        "x": 8,
+        "z": 6
+      },
+      "empty": true,
+      "nonAir": 0,
+      "conflicts": 0,
+      "pasteOrigin": [
+        2203,
+        -3,
+        1362
+      ],
+      "size": [
+        500,
+        1,
+        500
+      ],
+      "gridBox": {
+        "min": [
+          2203,
+          -3,
+          1362
+        ],
+        "max": [
+          2702,
+          -3,
+          1861
+        ]
+      },
+      "schem": "campus-500-x08-z06.schem",
+      "litematic": "campus-500-x08-z06.litematic",
+      "bytes": 401
+    }
+  ]
+}

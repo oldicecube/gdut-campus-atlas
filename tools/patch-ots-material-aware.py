@@ -54,6 +54,16 @@ for rel in ['src/voxelisers/normal-corrected-ray-voxeliser.ts', 'src/voxelisers/
         ('this._voxelMesh.addVoxel(voxelPosition, voxelColour);', 'this._voxelMesh.addVoxel(voxelPosition, voxelColour, materialName);'),
     ])
 
+# Clean colour policy: no ordered dithering. One source colour maps to one
+# nearest candidate instead of deliberately spreading across several blocks.
+config = root / 'tools/headless-config.ts'
+cs = config.read_text(encoding='utf-8')
+cs = cs.replace("dithering: 'ordered',", "dithering: 'off',")
+cs = cs.replace("ditheringMagnitude: 32,", "ditheringMagnitude: 0,")
+cs = cs.replace("resolution: 32,", "resolution: 255,")
+config.write_text(cs, encoding='utf-8', newline='\n')
+print('patched tools/headless-config.ts: dithering off, resolution 255')
+
 block = root / 'src/block_mesh.ts'
 s = block.read_text(encoding='utf-8')
 if 'function semanticRole(materialName?: string)' not in s:
@@ -95,14 +105,17 @@ function roleMatchesBlock(role: string, blockName: string): boolean {
         case 'road':
         case 'paving':
         case 'wall':
-        case 'stone':
-        case 'tile':
         case 'sport_surface':
         case 'sport_line':
         case 'light':
         case 'shore':
-            return base.endsWith('_concrete') || base.endsWith('_terracotta') || base.endsWith('_wool') ||
-                /minecraft:(stone|smooth_stone|bricks|quartz_block|sand|smooth_sandstone|prismarine|end_stone)$/.test(base);
+            // All un-specialised faces use solid concrete only. Never include
+            // powder, sand, gravel or other gravity-affected blocks.
+            return base.endsWith('_concrete');
+        case 'stone':
+            return /minecraft:(stone|smooth_stone|.*_stone_bricks|.*_bricks|.*_deepslate|.*_blackstone)$/.test(base) && !base.endsWith('_concrete_powder');
+        case 'tile':
+            return /minecraft:(.*_concrete|.*_terracotta|.*_glazed_terracotta|quartz_block|prismarine)$/.test(base);
         default: return false;
     }
 }
