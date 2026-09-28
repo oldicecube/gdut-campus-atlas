@@ -164,7 +164,7 @@ const vecTag = (name: string, x: number, y: number, z: number) => {
 
 type Summary = {size: [number, number, number]; volume: number; paletteEntries: number; bitsPerBlock: number; nonAirBlocks: number; dataVersion: number; longs: number};
 
-async function convert(inputFile: string, outputFile: string, name: string, author: string): Promise<Summary> {
+export async function convert(inputFile: string, outputFile: string, name: string, author: string): Promise<Summary> {
   const raw = zlib.gunzipSync(fs.readFileSync(inputFile));
   const header = parseSchem(raw);
   const {width, height, length} = header;
@@ -319,6 +319,8 @@ function parseArgs() {
   };
 }
 
-const args = parseArgs();
-const summary = await convert(args.input, args.output, args.name, args.author);
-console.log(JSON.stringify({input: args.input, output: args.output, bytes: fs.statSync(args.output).size, ...summary}, null, 2));
+if (process.argv[1] && path.basename(process.argv[1]).startsWith('schem-to-litematic')) {
+  const args = parseArgs();
+  const summary = await convert(args.input, args.output, args.name, args.author);
+  console.log(JSON.stringify({input: args.input, output: args.output, bytes: fs.statSync(args.output).size, ...summary}, null, 2));
+}
